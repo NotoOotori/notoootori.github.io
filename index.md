@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Study Notes
+title: Noto Ootori的学习笔记
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Study Notes
+# {{ page.title }}
 <!-- markdownlint-enable MD025 -->
 
 {% for post in site.posts %}

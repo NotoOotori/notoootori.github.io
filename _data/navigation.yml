@@ -1,0 +1,4 @@
+- name: 主页
+  link: /
+- name: 关于
+  link: /about.html
