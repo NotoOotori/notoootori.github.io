@@ -1,33 +1,29 @@
 nav{
-	margin-left: 0;
-	margin-right: 50px;
+	margin: 0 50px 0 0;
 }
 nav ul{
-	padding: 0;
 	margin: 0;
 }
 nav ul li{
-	list-style: none;
 	float: left;
-	padding: 12px 0;
-	margin: 0;
-	background: var(--text-color);
-	color: var(--background-color);
+	list-style: none;
 }
 nav ul li a{
-	color: inherit; // default: -webkit-link
+	float: left;
+	background: var(--text-color);
+	color: var(--background-color);
 	text-decoration: none;
 	font-weight: bold;
 	padding: 12px 30px;
 }
-nav li:hover, nav .current{
+nav ul li a:hover, nav .current{
 	background: var(--background-color);
 	color: var(--text-color);
 }
 
-nav .left{
+nav ul.left{
 	float: left;
 }
-nav .right{
+nav ul.right{
 	float: right;
 }
