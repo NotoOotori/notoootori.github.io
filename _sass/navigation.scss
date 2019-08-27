@@ -1,29 +1,30 @@
 nav{
-	margin: 0 50px 0 0;
+	margin: 0 50px 0 0; // Set right margin to 50px.
 }
+
 nav ul{
 	margin: 0;
 }
-nav ul li{
+nav ul.left{
 	float: left;
+}
+nav ul.right{
+	float: right;
+}
+
+nav ul li{
+	float: left; // Float the blocks horizontally.
 	list-style: none;
 }
 nav ul li a{
-	float: left;
+	float: left; // Needed, but don't know why.
 	background: var(--text-color);
 	color: var(--background-color);
-	text-decoration: none;
+	text-decoration: none; // Remove underline.
 	font-weight: bold;
 	padding: 12px 30px;
 }
 nav ul li a:hover, nav .current{
 	background: var(--background-color);
 	color: var(--text-color);
-}
-
-nav ul.left{
-	float: left;
-}
-nav ul.right{
-	float: right;
 }

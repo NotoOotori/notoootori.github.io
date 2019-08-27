@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; // Refer to https://segmentfault.com/a/1190000006110417
   background: var(--background-color);
   color: var(--text-color);
 }
@@ -9,7 +9,7 @@ body header{
 	content: '';
 	clear: both;
 	display: table;
-  width: 100%;
+  width: 100%; // Needed to contain a full-width navbar. 
 }
 
 body main{
