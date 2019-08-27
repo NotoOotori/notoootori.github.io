@@ -1,5 +1,4 @@
 ---
-layout: default
 title: 关于本站
 ---
 
