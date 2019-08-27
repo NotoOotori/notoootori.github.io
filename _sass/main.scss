@@ -15,3 +15,23 @@ body header{
 body main{
   margin: 0 100px;
 }
+
+// Link.
+body main a{
+  color: cyan;
+}
+
+// Tag.
+body main a.tag{
+  color: mediumpurple;
+  background: var(--text-color);
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  padding: 1px;
+  text-decoration: none;
+}
+
+// Post date.
+body main span.date{
+  color: gray;
+}

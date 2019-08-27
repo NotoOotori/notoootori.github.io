@@ -1,0 +1,10 @@
+---
+layout: default
+---
+
+<h1>标签: {{ page.tag }}</h1>
+<ul>
+{% for post in site.tags[page.tag] %}
+  {% include post-link.html %}
+{% endfor %}
+</ul>
