@@ -1,0 +1,4 @@
+{% for tag in tag_list %}
+  {% capture tag_url %}/tags/{{ tag }}.html{% endcapture %}
+  <a href="{{ tag_url | relative_url }}" class="tag">{{ tag }}</a>&nbsp;
+{% endfor %}
