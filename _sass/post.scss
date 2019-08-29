@@ -1,0 +1,33 @@
+ul.post-list{
+  line-height: 1.5em;
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+ul.post-list li.block{
+  border: 1px solid;
+  border-radius: 8px;
+  box-shadow: 0 0 20px #888888;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+ul.post-list li.block a.title{
+  display: inline-block;
+  font-size: 125%;
+  margin-bottom: 10px;
+}
+
+ul.post-list li.block .description{
+  
+}
+
+// Tag.
+.post a.tag, .post-list a.tag{
+  color: darkviolet;
+  background: var(--text-color);
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  padding: 1px;
+  text-decoration: none;
+}

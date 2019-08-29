@@ -13,21 +13,14 @@ body header{
 }
 
 body main{
-  margin: 0 100px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Link.
 body main a{
-  color: cyan;
-}
-
-// Tag.
-body main a.tag{
-  color: mediumpurple;
-  background: var(--text-color);
-  border-radius: 3px;
-  font-family: Consolas, monospace;
-  padding: 1px;
+  color: powderblue;
   text-decoration: none;
 }
 

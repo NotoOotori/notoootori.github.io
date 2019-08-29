@@ -1,0 +1,13 @@
+<ul class="post-list">
+  {% for post in post_list %}
+    <li class="block">
+      <a href="{{ post.url | relative_url }}" class="title">{{ post.title }}</a>
+      &nbsp;
+      {% assign tag_list = post.tags %}
+      {% include tag-list.html %}
+      <span class="date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+      <br>
+      <span class="description">{{ post.description }}</span>
+    </li>
+  {% endfor %}
+</ul>
