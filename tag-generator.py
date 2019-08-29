@@ -23,7 +23,7 @@ def main(argv):
     except getopt.GetoptError:
         sys.exit(1)
     for opt, _ in opts:
-        if opt == '--drafts':
+        if opt in ['--draft', '--drafts']:
             POST_DIRS.append('_drafts/')
 
     filenames = []
