@@ -57,15 +57,13 @@ def main(argv):
     if not os.path.exists(TAG_DIR):
         os.makedirs(TAG_DIR)
 
-    print(total_tags)
-
     for tag in total_tags:
         tag_filename = TAG_DIR + tag + '.md'
-        f = open(tag_filename, 'a')
+        f = open(tag_filename, 'w')
         write_str = '---\nlayout: tag\ntitle: \"Tag: {0}\"\ntag: {0}\n---\n'.format(tag)
         f.write(write_str)
         f.close()
-    print("Tags generated, count", total_tags.__len__())
+    print("Tags generated, count", len(total_tags))
 
 if __name__ == '__main__':
     main(sys.argv[1:])

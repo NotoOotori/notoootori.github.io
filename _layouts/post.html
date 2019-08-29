@@ -2,12 +2,14 @@
 layout: default
 ---
 
-<h1>{{ page.title }}</h1>
+<div class="post">
 
-<span class="post">
+  <h1>{{ page.title }}</h1>
+
   {% assign tag_list = page.tags %}
   {% include tag-list.html %}
   <span class="date">{{ page.date | date: "%Y年%m月%d日" }}</span>
-</span>
 
-{{ content }}
+  {{ content }}
+
+</div>

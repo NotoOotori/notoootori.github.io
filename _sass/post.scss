@@ -1,3 +1,7 @@
+.post .date, .post-list .date{
+  color: gray;
+}
+
 ul.post-list{
   line-height: 1.5em;
   list-style: none;
@@ -23,7 +27,7 @@ ul.post-list li.block .description{
 }
 
 // Tag.
-.post a.tag, .post-list a.tag{
+.tag-list a.tag{
   color: darkviolet;
   background: var(--text-color);
   border-radius: 3px;
