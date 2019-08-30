@@ -1,3 +1,7 @@
+html{
+  line-height: normal;
+}
+
 body{
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; // Refer to https://segmentfault.com/a/1190000006110417
@@ -18,8 +22,16 @@ body main{
   margin-right: auto;
 }
 
+// Setting line height.
+body main{
+  line-height: 1.5em;
+}
+h1, h2, h3, h4, h5, h6{
+  line-height: normal;
+}
+
 // Link.
-body main a{
+a{
   color: powderblue;
   text-decoration: none;
 }
