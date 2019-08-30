@@ -10,6 +10,6 @@ layout: default
   {% include tag-list.html %}
   <span class="date">{{ page.date | date: "%Y年%m月%d日" }}</span>
 
-  {{ content }}
+  {% include anchor-headings.html html=content anchorBody='#' anchorClass='anchor' %}
 
 </div>

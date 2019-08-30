@@ -2,6 +2,10 @@
   color: gray;
 }
 
+.post a.anchor{
+  
+}
+
 ul.post-list{
   list-style: none;
   padding-inline-start: 0;
@@ -30,7 +34,6 @@ ul.post-list li.block .description{
   color: darkviolet;
   background: var(--text-color);
   border-radius: 3px;
-  font-family: Consolas, monospace;
-  padding: 1px;
+  padding: 2px;
   text-decoration: none;
 }
