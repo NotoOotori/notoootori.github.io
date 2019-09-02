@@ -60,7 +60,7 @@ def main(argv):
     for tag in total_tags:
         tag_filename = TAG_DIR + tag + '.md'
         f = open(tag_filename, 'w')
-        write_str = '---\nlayout: tag\ntitle: \"Tag: {0}\"\ntag: {0}\n---\n'.format(tag)
+        write_str = '---\nlayout: tag\ntitle: \"标签: {0}\"\ntag: {0}\n---\n'.format(tag)
         f.write(write_str)
         f.close()
     print("Tags generated, count", len(total_tags))
