@@ -6,6 +6,10 @@
   
 }
 
+.post h1+p, h2+p, h3+p, h4+p, h5+p, h6+p, p+p{
+  text-indent: 2em;
+}
+
 ul.post-list{
   list-style: none;
   padding-inline-start: 0;
