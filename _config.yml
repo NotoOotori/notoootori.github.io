@@ -10,3 +10,7 @@ defaults:
       path: ""
     values:
       layout: "default"
+
+url: "https://notoootori.github.io"
+plugins:
+  - jekyll-sitemap
