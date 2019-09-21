@@ -6,7 +6,9 @@
   
 }
 
-.post h1+p, h2+p, h3+p, h4+p, h5+p, h6+p, p+p, ul+p, ol+p, blockquote+p{
+.post
+  h1+p, h2+p, h3+p, h4+p, h5+p, h6+p, p+p,
+  ul+p, ol+p, blockquote+p, figure+p{
   text-indent: 2em;
 }
 
