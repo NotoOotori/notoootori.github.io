@@ -6,9 +6,11 @@ layout: default
 
   <h1>{{ page.title }}</h1>
 
-  {% assign tag_list = page.tags %}
-  {% include tag-list.html %}
-  <span class="date">{{ page.date | date: "%Y年%m月%d日" }}</span>
+  <div>
+    {% assign tag_list = page.tags %}
+    {% include tag-list.html %}
+    <span class="date">{{ page.date | date: "%Y年%m月%d日" }}</span>
+  </div>
 
   {% include anchor-headings.html html=content anchorBody='#' anchorClass='anchor' %}
 
