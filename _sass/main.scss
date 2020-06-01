@@ -13,7 +13,7 @@ body header{
 	content: '';
 	clear: both;
 	display: table;
-  width: 100%; // Needed to contain a full-width navbar. 
+  width: 100%; // Needed to contain a full-width navbar.
 }
 
 body main{
@@ -28,6 +28,7 @@ body main{
 }
 h1, h2, h3, h4, h5, h6{
   line-height: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; // Refer to https://segmentfault.com/a/119000000611041
 }
 
 // Link.
