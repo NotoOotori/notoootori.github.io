@@ -53,13 +53,13 @@ def main(argv):
     old_tags = glob.glob(TAG_DIR + '*.md')
     for tag in old_tags:
         os.remove(tag)
-        
+
     if not os.path.exists(TAG_DIR):
         os.makedirs(TAG_DIR)
 
     for tag in total_tags:
         tag_filename = TAG_DIR + tag + '.md'
-        f = open(tag_filename, 'w')
+        f = open(tag_filename, 'w', encoding='utf8')
         write_str = '---\nlayout: tag\ntitle: \"标签: {0}\"\ntag: {0}\nrobots: noindex\n---\n'.format(tag)
         f.write(write_str)
         f.close()
