@@ -11,6 +11,13 @@ defaults:
     values:
       layout: "default"
 
+markdown: kramdown
+kramdown:
+  input: GFM
+  # Disable kramdown hightlighter and use highlight.js instead
+  syntax_highlighter: nil
+
 url: "https://notoootori.github.io"
+
 plugins:
   - jekyll-sitemap
