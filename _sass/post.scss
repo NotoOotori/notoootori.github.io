@@ -3,7 +3,7 @@
 }
 
 .post a.anchor{
-  
+
 }
 
 .post
@@ -42,7 +42,7 @@ ul.post-list li.block a.title{
 }
 
 ul.post-list li.block .description{
-  
+
 }
 
 // Tag.
@@ -52,4 +52,12 @@ ul.post-list li.block .description{
   border-radius: 3px;
   padding: 2px;
   text-decoration: none;
+}
+
+// Image
+img{
+  display: block;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
