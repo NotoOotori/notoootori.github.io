@@ -13,8 +13,8 @@ script: ./script/cibuild
 branches:
   only:
   - master       # test the master branch
-  # - gh-pages     # test the gh-pages branch
-  - /pages-(.*)/ # test every branch which starts with "pages-"
+  - gh-pages     # test the gh-pages branch
+  # - /pages-(.*)/ # test every branch which starts with "pages-"
 
 env:
   global:
@@ -32,4 +32,3 @@ cache: bundler # caching bundler gem packages will speed up build
 # Optional: disable email notifications about the outcome of your builds
 notifications:
   email: false
- 
