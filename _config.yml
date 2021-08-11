@@ -1,4 +1,4 @@
-exclude: [vendor, tag-generator.py]
+exclude: [vendor, tools]
 
 defaults:
   - scope:
