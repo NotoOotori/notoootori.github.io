@@ -1,0 +1,27 @@
+name: Generate Stuffs
+on: [push, workflow_dispatch]
+
+jobs:
+  run:
+    name: Generate Tags
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+
+      - name: Update Tags
+        run: python3 tag-generator.py
+
+      - name: Commit and Push Changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'tags/*.md'
+          default_author: github_actions
+          message: 'chore(tags): generate tags automatically'
+          push: true
