@@ -16,7 +16,7 @@ jobs:
           architecture: 'x64'
 
       - name: Update Tags
-        run: python3 tag-generator.py
+        run: python3 tools/tag-generator.py
 
       - name: Commit and Push Changes
         uses: EndBug/add-and-commit@v7
