@@ -1,5 +1,8 @@
 name: Build Website
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   tag:
@@ -43,7 +46,7 @@ jobs:
             ${{ runner.os }}-gems-
 
       - name: Build Website and Push
-        uses: helaili/jekyll-action@v2
+        uses: NotoOotori/jekyll-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: 'gh-pages'
