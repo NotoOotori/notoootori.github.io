@@ -28,7 +28,7 @@ def main(argv):
 
     filenames = []
     for post_dir in POST_DIRS:
-        filenames += (glob.glob(post_dir + '*md'))
+        filenames += (glob.glob(post_dir + '**/*.md', recursive=True))
 
     total_tags = []
     for filename in filenames:
