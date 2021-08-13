@@ -5,7 +5,7 @@ Contact: lqian8@jhu.edu
 This script creates tags for your Jekyll blog hosted by Github page.
 No plugins required.
 
-Modified by Noto Ootori, 2019.
+Modified by Chen Xuyang, 2019.
 '''
 import getopt
 import glob
