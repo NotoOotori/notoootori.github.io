@@ -1,7 +1,7 @@
 # notoootori.github.io
 
-![build-site](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/build-site.yml/badge.svg)
-<!-- [![Build Status](https://www.travis-ci.com/NotoOotori/notoootori.github.io.svg)](https://www.travis-ci.com/NotoOotori/notoootori.github.io) -->
+[![build-site-action](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/build-site.yml/badge.svg)](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/build-site.yml)
+[![github-pages-deployment](https://img.shields.io/github/deployments/NotoOotori/notoootori.github.io/github-pages)](https://github.com/NotoOotori/notoootori.github.io/deployments/activity_log?environment=github-pages)
 
 ## License
 
