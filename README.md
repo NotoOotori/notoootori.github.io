@@ -1,7 +1,7 @@
 # notoootori.github.io
 
-![Build Website](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/build-website.yml/badge.svg)
-[![Build Status](https://www.travis-ci.com/NotoOotori/notoootori.github.io.svg?branch=gh-pages)](https://www.travis-ci.com/NotoOotori/notoootori.github.io)
+![build-site](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/build-site.yml/badge.svg)
+<!-- [![Build Status](https://www.travis-ci.com/NotoOotori/notoootori.github.io.svg)](https://www.travis-ci.com/NotoOotori/notoootori.github.io) -->
 
 ## License
 

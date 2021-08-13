@@ -1,4 +1,4 @@
-name: Build Website
+name: build-site
 on:
   push:
     branches:
@@ -6,22 +6,22 @@ on:
 
 jobs:
   tag:
-    name: Generate Tags
+    name: update-tags
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: checkout-repo
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: setup-python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
           architecture: 'x64'
 
-      - name: Update Tags
+      - name: generate-tags
         run: python3 tools/tag-generator.py
 
-      - name: Commit and Push Changes
+      - name: push-tag-update
         uses: EndBug/add-and-commit@v7
         with:
           add: 'tags/*.md'
@@ -30,14 +30,14 @@ jobs:
           push: true
 
   build:
-    name: Build Website and Push
+    name: build-site
     needs: tag
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: checkout-repo
         uses: actions/checkout@v2
 
-      - name: Cache Website
+      - name: cache-website
         uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -45,7 +45,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Build Website and Push
+      - name: push-site-build
         uses: NotoOotori/jekyll-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
