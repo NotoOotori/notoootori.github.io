@@ -1,0 +1,34 @@
+name: Test Site
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  test:
+    name: Prebuild site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3 # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Install html-proofer
+        env:
+          NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+        run: gem install html-proofer
+
+      - name: Cache html-proofer
+        uses: actions/cache@v2
+        with:
+          path: tmp/.htmlproofer
+          key: ${{ runner.os }}-htmlproofer
+
+      - name: Run html-proofer
+        run: htmlproofer ./
+        continue-on-error: true
