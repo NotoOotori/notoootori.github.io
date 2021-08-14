@@ -33,4 +33,4 @@ jobs:
 
       - name: Run html-proofer
         run: htmlproofer ./
-        continue-on-error: true
+        if: ${{ always() }}
