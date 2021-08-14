@@ -1,8 +1,8 @@
 # notoootori.github.io
 
-[![prebuild-site-action](https://img.shields.io/github/workflow/status/NotoOotori/notoootori.github.io/prebuild-site?label=prebuild%20site&logo=github)](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/prebuild-site.yml)
+[![prebuild-site-action](https://img.shields.io/github/workflow/status/NotoOotori/notoootori.github.io/Prebuild%20Site%20for%20Deployment?label=prebuild%20site&logo=github)](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/prebuild-site.yml)
 [![github-pages-deployment](https://img.shields.io/github/deployments/NotoOotori/notoootori.github.io/github-pages?label=github%20pages&logo=github)](https://github.com/NotoOotori/notoootori.github.io/deployments/activity_log?environment=github-pages)
-[![test-site-action](https://img.shields.io/github/workflow/status/NotoOotori/notoootori.github.io/test-site?label=test%20site&logo=github)](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/test-site.yml)
+[![test-site-action](https://img.shields.io/github/workflow/status/NotoOotori/notoootori.github.io/Test%20Site?label=test%20site&logo=github)](https://github.com/NotoOotori/notoootori.github.io/actions/workflows/test-site.yml)
 
 ## License
 
