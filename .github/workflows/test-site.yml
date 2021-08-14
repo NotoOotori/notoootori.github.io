@@ -1,8 +1,7 @@
 name: Test Site
 on:
-  push:
-    branches:
-      - gh-pages
+  schedule:
+    - cron: 0 8 * * *
   workflow_dispatch:
 
 jobs:
@@ -12,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: gh-pages
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
