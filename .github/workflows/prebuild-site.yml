@@ -1,43 +1,36 @@
-name: build-site
+name: Prebuild Site for Deployment
 on:
   push:
     branches:
       - master
 
 jobs:
-  tag:
-    name: update-tags
+  build:
+    name: Prebuild site
+    needs: tag
     runs-on: ubuntu-latest
     steps:
-      - name: checkout-repo
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: setup-python
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
           architecture: 'x64'
 
-      - name: generate-tags
+      - name: Update tags
         run: python3 tools/tag-generator.py
 
-      - name: push-tag-update
+      - name: Push tag update
         uses: EndBug/add-and-commit@v7
         with:
           add: 'tags/*.md'
           default_author: github_actions
-          message: 'chore(tags): generate tags automatically'
+          message: 'chore(tags): update tags automatically'
           push: true
 
-  build:
-    name: build-site
-    needs: tag
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v2
-
-      - name: cache-website
+      - name: Cache website
         uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -45,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: push-site-build
+      - name: Prebuild site and push to gh-pages
         uses: NotoOotori/jekyll-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
