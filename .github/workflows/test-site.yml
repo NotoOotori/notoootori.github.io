@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Prebuild site
+    name: Test site
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,8 +17,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.3 # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          # Not needed with a .ruby-version file
+          ruby-version: 2.6.3
+          # Run 'bundle install' and cache installed gems automatically
+          bundler-cache: true
 
       - name: Install html-proofer
         env:
@@ -26,11 +28,13 @@ jobs:
         run: gem install html-proofer
 
       - name: Cache html-proofer
-        uses: actions/cache@v2
+        # Switch to official version only if
+        # https://github.com/actions/cache/issues/92
+        # is resolved
+        uses: pat-s/always-upload-cache@v2
         with:
           path: tmp/.htmlproofer
           key: ${{ runner.os }}-htmlproofer
 
       - name: Run html-proofer
         run: htmlproofer ./
-        if: ${{ always() }}
