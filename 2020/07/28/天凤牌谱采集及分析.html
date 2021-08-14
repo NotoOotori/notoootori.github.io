@@ -1,0 +1,439 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>天凤牌谱采集及分析</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>天凤牌谱采集及分析</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E9%BA%BB%E5%B0%86sitp.html" class="tag">麻将sitp</a>&nbsp;
+  
+    
+    <a href="/tags/%E5%A4%A9%E5%87%A4.html" class="tag">天凤</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年07月28日</span>
+  </div>
+
+  <h2 id="采集牌谱">
+        
+        
+          采集牌谱 <a href="#采集牌谱" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>采集牌谱流程如下:</p>
+    
+      <h3 id="下载年度记录">
+        
+        
+          下载年度记录 <a href="#下载年度记录" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>前往<a href="https://tenhou.net/sc/raw/">天凤-记录</a>的过去记录部分, 下载名字形如<code>scraw[year].zip</code>的文件并解压.</p>
+    
+      <h3 id="找到凤凰桌的牌谱链接">
+        
+        
+          找到凤凰桌的牌谱链接 <a href="#找到凤凰桌的牌谱链接" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>2013年以前的压缩包解压后直接得到一系列<code>scc[yymmdd].html</code>文件, 2013年及以后的压缩包解压后得到<code>scc[yymmdd].html.gz</code>文件, 再次解压后得到<code>html</code>文件. 每个<code>html</code>文件存储着当天全部的凤凰桌对局信息, 用文本文档打开<code>html</code>文件, 其中<code>&lt;a href="[url]"&gt;</code>中的<code>[url]</code>就是牌谱链接, 点击即可选择用天凤网页版或者客户端查看牌谱.</p>
+    
+      <h3 id="转换牌谱链接得到牌谱文本">
+        
+        
+          转换牌谱链接得到牌谱文本 <a href="#转换牌谱链接得到牌谱文本" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>当然我们需要的不是在线查看牌谱, 我们需要下载牌谱文本. 在线查看牌谱的链接形如<code>tenhou.net/0/?log=[id]</code>, 牌谱文本的链接形如<code>tenhou.net/0/log/?[id]</code>. 因此将牌谱链接中的<code>?log=</code>替换成<code>log/?</code>, 输入至浏览器即可看到牌谱文本, 复制粘贴即可保存到本地.</p>
+    
+      <h3 id="自动爬取牌谱文本">
+        
+        
+          自动爬取牌谱文本 <a href="#自动爬取牌谱文本" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>如果愿意手动重复以上步骤, 那么可以跳过这一部分.</p>
+
+<p>自动化爬取牌谱文本的关键是向牌谱文本链接发送请求, 并保存接收到的回复. 在<code>python</code>中通常情况下这是由<code>urllib.request.urlopen</code>函数做到的, 但是天凤似乎对于程序爬取有一定的限制, 直接<code>urlopen</code>会返回404错误, 所以我们需要加一个请求头伪装成来自浏览器的请求, 同时使用<code>Request</code>对象和<code>Opener</code>对象发起请求. KStarXin提供的一个示例如下:</p>
+
+<pre><code class="language-python">import urllib.request
+
+HEADER = {
+    'Host': 'e.mjv.jp',
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:65.0) Gecko/20100101 Firefox/65.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.5',
+    'Accept-Encoding': 'gzip, deflate',
+    'Connection': 'keep-alive'
+}
+url = 'http://e3.mjv.jp/0/log/?2013010100gm-00e1-0000-e5440138' # for example
+
+req = urllib.request.Request(url=url, headers=HEADER)
+opener = urllib.request.build_opener()
+response = opener.open(req)
+response = gzip.decompress(response.read()).decode('utf-8')
+</code></pre>
+
+<p>除此之外还需注意牌谱实际不是储存在<code>tenhou.net</code>域名下的, 而是分别储存在<code>*.mjv.jp</code>域名下. 经初步整理, 从2013年到2018年的牌谱文件域名有:</p>
+
+<ul>
+  <li><code>e3.mjv.jp</code></li>
+  <li><code>e4.mjv.jp</code></li>
+  <li><code>e5.mjv.jp</code></li>
+  <li><code>k0.mjv.jp</code></li>
+  <li><code>e.mjv.jp</code></li>
+</ul>
+
+<p>所以对于每一个牌谱<code>id</code>, 我们分别尝试从各个域名进行下载.</p>
+    
+      <h3 id="参考资料">
+        
+        
+          参考资料 <a href="#参考资料" class="anchor">#</a>
+        
+        
+      </h3>
+
+<!-- 1. [天鳳の牌譜ログ取得方法](https://mj-data.net/%E5%A4%A9%E9%B3%B3%E3%81%AE%E7%89%8C%E8%AD%9C%E3%83%AD%E3%82%B0%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95) -->
+<ol>
+  <li>天鳳の牌譜ログ取得方法: https<nolink>://mj-data.net/天鳳の牌譜ログ取得方法 (失效链接)</nolink></li>
+</ol>
+    
+      <h2 id="解析牌谱">
+        
+        
+          解析牌谱 <a href="#解析牌谱" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>牌谱文件是xml格式的, 可以通过python标准库中<a href="https://docs.python.org/3/library/xml.etree.elementtree.html#module-xml.etree.ElementTree">xml.etree.ElementTree</a>类来方便地解析xml文件.</p>
+
+<p>接下来我们将介绍xml文件中的各个元素及其属性的含义. 需要注意的是数数一般是从0开始数的(除了立直步骤之外).</p>
+    
+      <h3 id="mjloggm">
+        
+        
+          mjloggm <a href="#mjloggm" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>根元素.</p>
+    
+      <h4 id="ver">
+        
+        
+          ver <a href="#ver" class="anchor">#</a>
+        
+        
+      </h4>
+
+<p>牌谱格式的版本, 2018年1月1日的牌谱版本为2.3. 我们也将只对版本2.3的牌谱进行解析.</p>
+<dl>
+<dt>SHUFFLE</dt>
+
+<dd>乱数的信息, 牌山是由这个乱数所决定的. 我们不是很关心这个乱数, 因为其余的牌谱信息足以再现对局.</dd>
+
+<dt>seed</dt>
+
+<dd>乱数的种子.</dd>
+
+<dt>ref</dt>
+
+<dd>为空.</dd>
+</dl>
+    
+      <h3 id="go">
+        
+        
+          GO <a href="#go" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>牌桌规则和等级等信息.</p>
+<dl>
+<dt>type</dt>
+
+<dd>化为十进制表示的8位二进制数.
+
+<table><tr><th>0x01</th><th>如果是PVP对战则为1</th></tr>
+<tr><td>0x02</td><td>如果没有赤宝牌则为1</td></tr>
+<tr><td>0x04</td><td>如果无食断则为1</td></tr>
+<tr><td>0x08</td><td>如果是半庄则为1</td></tr>
+<tr><td>0x10</td><td>如果是三人麻将则为1</td></tr>
+<tr><td>0x20</td><td>如果是特上卓或凤凰卓则为1</td></tr>
+<tr><td>0x40</td><td>如果是速卓则为1</td></tr>
+<tr><td>0x80</td><td>如果是上级卓则为1</td></tr></table></dd>
+
+<dt>lobby</dt>
+
+<dd><a href="https://tenhou.net/man/#CS">大会lobby</a>的ID.</dd>
+</dl>
+    
+      <h3 id="un">
+        
+        
+          UN <a href="#un" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>天凤名, 段位, 等级分等的对局者信息.</p>
+
+<dl>
+<dt>n0 ~ n3</dt>
+
+<dd>天凤名. URL格式UTF编码. 对局者的编号是0, 编号按逆时针顺序增加.</dd>
+
+<dt>dan</dt>
+
+<dd>段位. 以逗号分隔的四个数. 0: 新人 ~ 20: 天凤.</dd>
+
+<dt>rate</dt>
+
+<dd>等级分. 以逗号分隔的四个数, 有两位小数.</dd>
+
+<dt>sx</dt>
+
+<dd>性别.</dd>
+</dl>
+    
+      <h3 id="taikyoku">
+        
+        
+          TAIKYOKU <a href="#taikyoku" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>从这个元素开始都是用来记录实际对局的.</p>
+
+<dl>
+<dt>oya</dt>
+
+<dd>起家. 通常是从0开始.</dd>
+</dl>
+    
+      <h3 id="init">
+        
+        
+          INIT <a href="#init" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>每局的初始信息.</p>
+
+<dl>
+<dt>seed</dt>
+
+<dd>以逗号分隔的六个数, 分别是局顺, 本场, 供托, 开门的两个骰子值(0~5), DORA表示牌的编号.</dd>
+
+<!-- TODO: 牌的编号 -->
+
+<dt>ten</dt>
+
+<dd>每局开始时候各玩家的点数除以100. 以逗号分隔的四个数.</dd>
+
+<dt>oya</dt>
+
+<dd>庄家的编号.</dd>
+
+<dt>hai0 ~ hai3</dt>
+
+<dd>起手牌. 以逗号分隔的13个数. 没有理牌.</dd>
+</dl>
+    
+      <h3 id="tuvw0135">
+        
+        
+          (T|U|V|W)(0~135) <a href="#tuvw0135" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>摸牌的信息.</p>
+
+<dl>
+<dt>T ~ W</dt><dd>玩家编号. T表示编号为0的玩家摸牌, W表示编号为3的玩家摸牌.</dd>
+<dt>0 ~ 135</dt><dd>摸进的牌的编号.</dd>
+</dl>
+    
+      <h3 id="defg0135">
+        
+        
+          (D|E|F|G)(0~135) <a href="#defg0135" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>打牌的信息.</p>
+
+<dl>
+<dt>D ~ G</dt><dd>玩家编号. D表示编号为0的玩家打牌, G表示编号为3的玩家打牌.</dd>
+<dt>0 ~ 135</dt><dd>打出的牌的编号.</dd>
+</dl>
+    
+      <h3 id="n">
+        
+        
+          N <a href="#n" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>副露的信息.</p>
+
+<dl><dt>who</dt><dd>开副露的玩家的编号.</dd><dt>面子的编号.</dt>
+<!-- TODO: 面子的编号 -->
+</dl>
+    
+      <h3 id="dora">
+        
+        
+          DORA <a href="#dora" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>新的DORA牌的信息(在开杠之后).</p>
+
+<dl><dt>hai</dt><dd>新的DORA表示牌的编号.</dd></dl>
+    
+      <h3 id="reach">
+        
+        
+          REACH <a href="#reach" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>立直的信息. 在立直宣言和立直成立时出现. 在立直宣言牌放铳的情况下, 立直成立的REACH元素不出现.</p>
+
+<dl><dt>who</dt><dd>立直玩家的编号</dd><dt>step</dt><dd>立直的阶段. 1表示立直宣言, 2表示立直成立.</dd><dt>ten</dt><dd>立直成立后各玩家的持有点数除以100</dd></dl>
+    
+      <h3 id="agari">
+        
+        
+          AGARI <a href="#agari" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>和牌的信息. 一炮双响的情况下AGARI元素会出现两次.</p>
+
+<dl>
+<dt>ba</dt><dd>2个数. 积棒个数和供托的立直棒个数</dd>
+<dt>hai</dt><dd>除了副露以外的手牌(兵牌), 包含和的牌. 用逗号分隔, 牌编号格式.</dd>
+<dt>m</dt><dd>包含暗杠的副露牌, 用逗号分隔, 面子编号格式.</dd>
+<dt>machi</dt><dd>和的牌, 牌编号格式.</dd>
+<dt>ten</dt><dd>3个数. 符, 和的打点(不除以100), 满贯情报(0: 满贯未满, 1: 满贯, 2: 跳满, 3: 倍满, 4: 三倍满, 5: 役满).</dd>
+<dt>yaku</dt><dd>非役满和牌的役的信息. 每个役编号和番数交替以逗号分隔.</dd>
+<!-- 役编号 -->
+<dt>yakuman</dt><dd>役满和牌的役的信息. 只有役编号, 用逗号分隔.</dd>
+<dt>doraHai</dt><dd>DORA表示牌的牌编号, 用逗号分隔.</dd>
+<dt>doraHaiUra</dt><dd>里DORA表示牌的牌编号, 用逗号分隔.</dd>
+<dt>who</dt><dd>和牌玩家的编号.</dd>
+<dt>fromWho</dt><dd>放铳玩家的编号.</dd>
+<dt>sc</dt><dd>和牌之后点数的移动情况. 8个数. 每个玩家的持有点数/100和收支点数/100交替以逗号分隔.</dd>
+<dt>owari</dt><dd>终局的信息. 8个数, 每个玩家的持有点数/100以及包含uma的point数交替以逗号分隔.</dd>
+</dl>
+    
+      <h3 id="ryuukyoku">
+        
+        
+          RYUUKYOKU <a href="#ryuukyoku" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>流局的信息.</p>
+
+<dl>
+<dt>ba</dt><dd>同AGARI元素中的ba.</dd>
+<dt>sc</dt><dd>同AGARI元素中的sc.</dd>
+<dt>type</dt><dd>流局的理由.
+<table>
+<tr><th>值</th><th>意思</th></tr>
+<tr><td>nm</td><td>流局满贯</td></tr>
+<tr><td>yao9</td><td>九种九牌</td></tr>
+<tr><td>kaze4</td><td>四风连打</td></tr>
+<tr><td>reach4</td><td>四家立直</td></tr>
+<tr><td>ron3</td><td>三家和了</td></tr>
+<tr><td>kan4</td><td>四杠散了</td></tr>
+</table>
+</dd>
+<dt>owari</dt><dd>同AGARI元素中的owari.</dd>
+</dl>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

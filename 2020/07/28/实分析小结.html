@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>实分析小结</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>实分析小结</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90.html" class="tag">实分析</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年07月28日</span>
+  </div>
+
+  <p>数学分析中我们建立了微积分体系, 从一元函数到多元函数, 得到了不少应用很广的结论, 但是数学分析中的微积分在理论上也存在着一些缺陷, 比如:</p>
+
+<ol>
+  <li><strong>函数类不封闭</strong> 在闭区间上, 不论是连续函数类, Riemann可积函数类还是一阶可微函数类均不封闭, 对研究函数列极限的性质有不小的阻碍. 并且在数学分析框架中我们只给出了函数列极限保持分析性质的充分条件, 通常要求一致收敛, 而我们知道函数列一致收敛一般是很难做到的, 所以数学分析框架中这套理论并不完美. 我们需要Lebesgue积分来解决这一问题.</li>
+  <li>
+    <p><strong>曲线求长问题</strong> 在闭区间上, 连续曲线不一定可求长, 而可微函数一定可求长并且有公式</p>
+
+\[L=\int_{0}^{1}\sqrt{1+\dot{y}^{2}}\mathop{}\!\mathrm{d}x.\]
+
+    <p>问题是对于可求长曲线, 该公式一定成立吗? Lebesgue微积分对于所有可求长曲线(有界变差函数)良定了该式子, 并且作出了肯定的答复.</p>
+  </li>
+  <li><strong>微积分基本定理</strong> Riemann积分下的微积分基本定理也不完美. Newton-Lebnitz公式直接要求导数可积而没有给出充要条件, 只给出了必要非充分条件原函数连续可微和充分非必要条件原函数可微. 变上限积分的可微性同样如此, 只给出了充分非必要条件被积函数连续和必要非充分条件被积函数可积. Lebesgue微积分给出了条件只需要可积的Lebesgue微分定理, 对应于变上限积分的可积性; 又给出了Lebesgue积分下Newton-Lebnitz公式的充要条件: 原函数绝对连续.</li>
+</ol>
+
+<p>我们发现用数学分析的语言难以准确描述这些定理的充要条件, 于是测度论就诞生了, 这也是实分析的基础.</p>
+      <h2 id="lebesgue测度论">
+        
+        
+          Lebesgue测度论 <a href="#lebesgue测度论" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>建立Lebesgue测度, 引出可测函数, 为之后的积分理论做好准备.</p>
+    
+      <h3 id="基本要求">
+        
+        
+          基本要求 <a href="#基本要求" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>实数集上的Lebesgue测度
+\(m: \mathscr{B}\subseteq 2^{\mathbb{R}} \to \mathbb{R}\)
+应满足以下要求:</p>
+
+<ol>
+  <li><strong>正则性</strong> 区间的测度等于区间端点坐标之差.</li>
+  <li><strong>可列可加性</strong> 测度与可列不交并可交换.</li>
+  <li><strong>平移不变性</strong> 集合平移后测度不变.</li>
+</ol>
+
+<p>并且由Lebesgue测度的构造过程可以证明满足这些条件的测度是唯一的.</p>
+    
+      <h3 id="lebesgue外测度">
+        
+        
+          Lebesgue外测度 <a href="#lebesgue外测度" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>我们将以Lebesgue外测度为基础定义Lebesgue测度. 外测度为映射</p>
+
+\[m_{*}: 2^{\mathbb{R}^{d}} \to \mathbb{R},\ E \mapsto \inf_{\bigcup{Q_{j}}\supseteq E}{\sum_{j=1}^{\infty}{\left|Q_{j}\right|}}.\]
+
+<p>这里我们用可列个闭正方体覆盖集合$E$, 并用这些正方体体积之和的下确界作为$E$的外测度. 值得注意的是允许有<strong>可列</strong>个正方体, 这使得外测度的估计更加精确. 如果改成<strong>有限</strong>个, 则为数学分析中常用的Jordan外测度.</p>
+
+<p>Lebesgue外测度具有如下性质:</p>
+
+<ol>
+  <li>单调性.</li>
+  <li>可列次可加性:
+\(\displaystyle m_{*}(E)\leq\sum_{j=1}^{\infty}{\left|E_{j}\right|}\)</li>
+  <li>用开集逼近:
+\(\displaystyle m_{*}(E)=\inf_{O\subseteq E}{m_{*}(O)}\)</li>
+</ol>
+    
+      <h3 id="lebesgue测度与可测集">
+        
+        
+          Lebesgue测度与可测集 <a href="#lebesgue测度与可测集" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>由Lebesgue外测度, Lebesgue测度有多种定义方式, 在这里我们给出两种:</p>
+
+<ul>
+  <li><strong>Stein书中定义(直观)</strong> 任取\(\varepsilon &gt;0\), 存在开集\(O\supseteq E\), 使得\(m_{*}(O-E)&lt;\varepsilon\), 则\(E\)为Lebesgue可测集.</li>
+  <li><strong>Caratheodory条件(不直观)</strong> 对于任意的集合\(A\), 都有\(m_{*}(A)=m_{*}(A\cap E)+m_{*}(A\cap E^{c})\), 则\(E\)为Lebesgue可测集.</li>
+</ul>
+
+<p>Lebesgue测度具有如下性质:</p>
+
+<ol>
+  <li>开集可测.</li>
+  <li>外测度为0的集合可测.</li>
+  <li>可列个可测集之并可测.</li>
+  <li>闭集可测.</li>
+  <li>可测集的补集可测.</li>
+  <li>可列个可测集之交可测.</li>
+  <li>可列可加性.</li>
+  <li>对于单增集列和测度有限的单减集列, 测度和极限可交换.</li>
+  <li>可测集的逼近:
+    <ol>
+      <li>包含它的开集.</li>
+      <li>被它包含的闭集.</li>
+      <li>(测度有限) 被他包含的紧集.</li>
+      <li>(测度有限) 有限个闭正方体.</li>
+    </ol>
+  </li>
+  <li>仿射不变性:
+    <ol>
+      <li>平移不变性.</li>
+      <li>伸缩不变性.</li>
+      <li>反射不变性.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Borel集是开集在可列并可列交和补运算下生成的\(\sigma\)代数, 很明显Borel集\(\sigma\)代数被可测集\(\sigma\)代数包含, 那么这两个\(\sigma\)代数之间到底是什么关系呢? 下面两个定理给出了解答:</p>
+
+<ul>
+  <li>一个集合可测当且仅当它与一个\(G_{\delta}\)集相差一个零测集, 当且仅当它与一个\(F_{\sigma}\)集相差一个零测集.</li>
+  <li>存在不是Borel集的Lebesgue可测集.</li>
+</ul>
+
+<p>除此之外, 在假设选择公理成立的前提下, 可测集\(\sigma\)代数也被实数集子集\(\sigma\)代数真包含. 我们可以构造出一个Lebesgue不可测的实数集子集Vitali集.</p>
+    
+      <h3 id="可测函数">
+        
+        
+          可测函数 <a href="#可测函数" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>类似于拓扑中连续函数的定义, 满足任何开集的原像是可测集的函数被定义为可测函数. 除此之外, 可测函数还被允许在零测集上取无限值.</p>
+
+<p>可测函数具有如下性质:</p>
+
+<ol>
+  <li>连续函数可测, 连续函数\(\Phi\)与有限值可测函数\(f\)的复合\(\Phi \circ f\)可测.</li>
+  <li>可测函数列的上下确界, 上下极限均可测.</li>
+  <li>可测函数的整数幂可测, 有限值可测函数的和与乘积可测.(和可测通过稠密的有理数集进行可数化来证明).</li>
+</ol>
+
+<p>在对可测函数的分析中大量运用了逼近的思想, 从简单的对象入手研究复杂抽象的对象, 值得借鉴. 可测函数可以由</p>
+
+<ul>
+  <li>绝对值单增的简单函数列逼近.</li>
+  <li>阶梯函数列几乎处处逼近.</li>
+</ul>
+
+<p>简单函数列和阶梯函数列也是Lebesgue积分和Riemann积分的基石.</p>
+
+<p>最后我们给出Littlewood的三大原理来结束这一部分:</p>
+
+<ol>
+  <li>每个集合基本都是区间的有限并.</li>
+  <li>每个函数基本都是连续的.</li>
+  <li>每个收敛函数序列基本都是一致收敛的.</li>
+</ol>
+    
+      <h2 id="lebesgue积分">
+        
+        
+          Lebesgue积分 <a href="#lebesgue积分" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>待续</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

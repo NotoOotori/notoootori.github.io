@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>随机变量与分布函数的区别</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>随机变量与分布函数的区别</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA.html" class="tag">概率论</a>&nbsp;
+  
+    
+    <a href="/tags/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html" class="tag">应用随机过程</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年07月28日</span>
+  </div>
+
+  <ol>
+  <li><strong>Borel域</strong>\(\mathscr{F}\): 设\(\Omega\)为一非空集合, 称为空间, 设\(\mathscr{F}\)是由一些\(\Omega\)的子集构成的非空集合, 如果\(\mathscr{F}\)中的元素关于集合的补运算和集合的可列并(交)运算封闭, 则称\(\mathscr{F}\)是空间\(\Omega\)上的<strong>Borel域</strong>. 注意空集\(\emptyset\)和全空间\(\Omega\)一定属于\(\mathscr{F}\).</li>
+  <li><strong>概率空间</strong>\((\Omega, \mathscr{F}, \mathscr{P})\): 设\(\mathscr{F}\)是空间\(\Omega\)上的Borel域, 如果从\(\mathscr{F}\)映到非负实数的函数\(\mathscr{P}\)满足可列可加性并且全空间\(\Omega\)的测度为1, 则称\(\mathscr{P}\)为<strong>概率测度</strong>, 并称\((\Omega, \mathscr{F}, \mathscr{P})\)为<strong>概率空间</strong>.</li>
+  <li>
+    <p><strong>随机变量</strong>\(X\): 设\((\Omega, \mathscr{F}, \mathscr{P})\)为概率空间, 如果有从\(\Omega\)映到广义实数\(\mathbb{R}^*\)的函数\(X\)满足</p>
+
+    <blockquote>
+      <p>Borel可测性: 对于广义实数集上的任意一个Borel集\(B\), 如果\(X^{-1}(B)\in\mathscr{F}\), 则称\(X\)是<strong>Borel可测的</strong>, 也称\(X\)是<strong>\(\mathscr{F}\)可测的</strong>,</p>
+    </blockquote>
+
+    <p>并且\(X\)几乎处处取有限值, 则称\(X\)是<strong>随机变量</strong>.</p>
+  </li>
+  <li><strong>分布函数</strong>\(F\): 从随机变量\(X\)可以导出一个分布函数\(F(x)=\mathscr{P}\left(X^{-1}(-\infty, x]\right)\).</li>
+</ol>
+
+<p>可以看出分布函数中忽略了\(X\)每个点取值, 而只关心取到某些值的点集的测度, 因此一个分布函数可以对应不同的随机变量.</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

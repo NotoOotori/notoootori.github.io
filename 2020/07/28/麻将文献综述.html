@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>麻将文献综述</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>麻将文献综述</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E9%BA%BB%E5%B0%86sitp.html" class="tag">麻将sitp</a>&nbsp;
+  
+    
+    <a href="/tags/%E7%BB%BC%E8%BF%B0.html" class="tag">综述</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年07月28日</span>
+  </div>
+
+  <h2 id="文献内容概括">
+        
+        
+          文献内容概括 <a href="#文献内容概括" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>先概括一下每篇文献都说了点什么, 再写综述.</p>
+
+<ul>
+  <li><a href="https://arxiv.org/abs/1707.07345">文献1</a>对麻将中的组合问题展开了研究, 讨论了清一色的13张手牌达成\(n\)面听牌的概率(其中\(n=9\)时即为纯正九莲宝灯听牌), 并通过初等组合数学和计算机编程枚举得到了最终的结果.</li>
+  <li><a href="https://arxiv.org/abs/1903.03294">文献2</a>对麻将AI进行了初步研究, 主要研究了如何判断14张手牌的向听数, 在只有条筒万和无番缚的情况下给出了向听数的计算算法及其有效性的证明, 相较于枚举算法大大提升了效率. 该文在最后还提出了基于对牌库了解的初步切牌算法, 虽然复杂度很高无法直接运用, 但值得参考借鉴.</li>
+  <li><a href="https://arxiv.org/abs/1904.07491">文献3</a>没怎么看懂, 运用传统算法, 感觉做得比较粗糙. 大概是他建立了一个不是那么复杂的概率模型, 安排了两种不同的风格(进攻(和牌, 听牌), 防守), 以此可以忽略一些与各自风格无关的玩家行为来简化模型(进攻当然就不管点不点炮了啦), 之后通过某种Logistic回归(?)来确定参数, 通过向听数减枝排除掉离和牌/听牌很远的牌型来优化运行时间, 最后按照手牌的向听数来安排打牌风格. 有空了的话再重新看一遍吧. 文章中没有具体提特殊牌型的处理没有提”杠”这种行为, 简单提了一下dora和立直的处理.</li>
+  <li><a href="https://arxiv.org/abs/1906.02146">文献4</a>机器学习应用的论文看起来很玄乎啊. 这篇文章描述了神经网络是怎么建立的. 输入层的基本结构为\(34\times 4\)的飞机(plane我当然知道不是飞机), 其中34为牌种类的总数, 4为每种牌的个数. 输入层分别记录了自己的手牌(包含赤dora标记), 每个人的副禄, 每个人的牌河, dora(dora指示牌), 立直状态, 自己的排名, 场数, 场风, 自风, 过去6回合的手牌副禄弃牌堆(不包括赤dora标记, 其中上回合状态额外包括立直和dora). 然后输出层分别是长度为34的切牌网络, 长度为1的碰网络, 长度为4的吃网络, xjb搞的杠网络(不用网络了, 直接干), 长度为1的立直网络和长度为1的和牌宣称网络. 最后他再调了调网络结构, 加了些我不懂的东西, 跑了15年的数据拿14年的数据做检验, 据说得到不错的结果. 这篇论文只讲了是怎么做的, 没讲原因, 他也讲不出来原因, 可能核心就是输入层和输出层数据结构的设计吧. 这个神经网络模型比较玄乎的地方是切牌网络为34bit但实际上只有14张牌能选择是否切掉, 文中表示他们的结果既surprising又exciting, 没有出问题, 也是很神奇. 文章中考虑不周全的地方包括立直棒个数, 本场数, 完整的历史记录以及杠的决策. 总之看下来很玄乎.</li>
+</ul>
+
+<p>注意到<a href="https://arxiv.org/abs/1904.07491">文献3</a><a href="https://arxiv.org/abs/1906.02146">文献4</a>都提到了以前有个德扑bot, 我还是很感兴趣的. <a href="https://arxiv.org/abs/1906.02146">文献4</a>还提到了之前有队日本人也用神经网络发了两篇麻将的论文, 不过是日文的, 有空可以找找.</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

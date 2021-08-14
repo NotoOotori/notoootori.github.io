@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>Baire纲定理及其简单应用</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>Baire纲定理及其简单应用</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90.html" class="tag">泛函分析</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月18日</span>
+  </div>
+
+  <h2 id="cantor闭集套定理cantors-intersection-theorem">
+        
+        
+          Cantor闭集套定理(Cantor’s intersection theorem) <a href="#cantor闭集套定理cantors-intersection-theorem" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>Cantor闭集套定理描述的是这样一件事情: 完备度量空间中的闭集套之交非空. 在给出定理的精确描述和证明之前, 我们先回顾一下之前学过类似的定理. 在数学分析中我们学习了闭区间套定理, 推广到一般拓扑空间就是Cantor紧集套定理, 叙述和证明如下:</p>
+
+<blockquote>
+  <p><strong>定理(Cantor紧集套定理)</strong> 设\(X\)是拓扑空间, \(\{K_n\}_1^\infty\)是\(X\)中的一个紧集列并且对于任意\(n\)都有\(K_n\supseteq K_{n+1}\)成立, 那么它们的交集</p>
+
+\[K\doteq\bigcap_{n=1}^{\infty} K_n\neq\varnothing.\]
+
+  <p>特别地, 如果\(\mathop\!\mathrm{diam} K_n\to0\), 那么\(K\)有且只有一个元素.</p>
+
+  <p><strong>证明</strong> 反证法, 假设\(\bigcap_1^\infty K_n=\varnothing\), 令\(O_n\doteq X-K_n\), 则有</p>
+
+\[\bigcup_{n=1}^\infty O_n=\bigcup_{n=1}^\infty (X-K_n)=X-\bigcap_{n=1}^\infty K_n=X\supseteq K_1.\]
+
+  <p>故\(\{O_n\}_1^\infty\)是\(K_1\)的一个开覆盖, 有有限子覆盖. 因为\(O_n\subseteq O_{n+1}\)对于每一个\(n\)都成立, 所以存在\(N\)使得\(O_N\subseteq K_1\), 但是有集合\(K_N\)使得\(K_N\subseteq K_1\)并且\(K_N\cap O_N=\varnothing\), 矛盾! 即得证.</p>
+</blockquote>
+
+<p>接下来我们要证明的Cantor闭集套定理是Cantor紧集套定理的一个变例, 所在空间由普通的拓扑空间加强到了完备的度量空间, 不过集合套的要求从紧集减弱到了半径趋于0的闭集.</p>
+
+<blockquote>
+  <p><strong>定理(Cantor闭集套定理)</strong> 设\(X\)是完备度量空间, \(\{F_n\}_1^\infty\)是\(X\)中的一个闭集列, 对于任意\(n\)都有\(F_n\supseteq F_{n+1}\)成立并且\(\mathop\!\mathrm{diam} F_n\to0\), 那么存在\(x\in X\)使得它们的交集</p>
+
+\[F\doteq\bigcap_{n=1}^{\infty} F_n=\{x\}.\]
+
+  <p><strong>证明</strong> 对每个\(n\), 取\(x_n\in F_n\). 设\(m&gt;n\), 因为\(x_m, x_n\in F_n\), 所以\(d(x_m, x_n)&lt;\mathop\!\mathrm{diam} F_n \to 0\), 故\(\{x_n\}\)是Cauchy列, 设其收敛到\(x\). 对于每一个\(n\), 因为\(F_n\)都是闭集, 所以\(x\in F_n\), 因此\(x\in \bigcap_1^\infty F_n\). 又\(\mathop\!\mathrm{diam} F_n\to0\)可以保证\(x\)是唯一的, 即得证.</p>
+</blockquote>
+    
+      <h2 id="baire纲定理baire-category-theorem">
+        
+        
+          Baire纲定理(Baire Category Theorem) <a href="#baire纲定理baire-category-theorem" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>完备度量空间上的Baire纲定理有多种等价描述, 这里我们叙述其中的两种, 并对于第二种给出证明.</p>
+
+<blockquote>
+  <p><strong>定理(Baire纲定理)</strong> 设\(X\)是一个完备度量空间,<br />
+(1) 若\(\{F_n\}_1^\infty\)是\(X\)中的一列无处稠密闭集, 那么\(\bigcup F_n\)也无处稠密.<br />
+(2) 若\(\{O_n\}_1^\infty\)是\(X\)中的一列稠密开集, 那么\(\bigcap O_n\)依然稠密.</p>
+
+  <p><strong>证明</strong> 设\(O\)为任意开集, 只须证\(O-\bigcup F_n\)非空. 因为\(F_1\)为无处稠密闭集, 所以存在半径小于1的开集\(O_1\)使得\(\overline{O}_1\subseteq O-F_1\). 同样, 存在半径小于\(1/2\)的开集\(O_2\)使得\(\overline{O}_2\subseteq O_1-F_2\). 以此类推, 我们可以找到一列开集\(\{O_n\}_1^\infty\)满足:</p>
+
+  <p>i) \(\overline{O}_{n+1}\subseteq O_n-F_{n+1}\),<br />
+ii) \(\mathop\!\mathrm{diam} O_n=1/n\).</p>
+
+  <p>根据Contour闭集套定理, 设\(\bigcap \overline{O}_n = \{x\}\), 那么\(x\)不在任何一个\(F_n\)中并且\(x\in O\). 即得证.</p>
+
+  <p><strong>注记</strong> (1)中闭集的条件可以略去, 因为无处稠密集的闭包是无处稠密闭集.</p>
+</blockquote>
+
+<p>Baire纲定理有如下直接推论:</p>
+
+<ol>
+  <li>有理数空间\(\mathbb{Q}, d\)不完备, 因为\(\mathbb{Q}\)可写成可数个无处稠密的闭集(单点集)之并.</li>
+  <li>欧式空间\(\mathbb{R}^d\)不能写成可数个\(d-1\)维超平面之并, 因为在标准度量下\(\mathbb{R}^d\)完备但是\(d-1\)为超平面是无处稠密的.</li>
+</ol>
+    
+      <h2 id="baire纲定理的一个应用">
+        
+        
+          Baire纲定理的一个应用 <a href="#baire纲定理的一个应用" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>Baire纲定理可以被用来给出闭区间上连续但处处不可导函数存在性的一个先验证明, 并得到更强的结论: 闭区间上至少一点可导的连续函数可以由连续但处处不可导的函数一致逼近.</p>
+
+<blockquote>
+  <p><strong>定理</strong> 存在闭区间\([0, 1]\)上的连续函数在\([0, 1]\)处处不可微.</p>
+
+  <p><strong>证明</strong> 令\(C[0, 1]\)表示闭区间\([0, 1]\)上连续函数全体构成的集合, 范数为无穷范数.</p>
+
+  <p><strong>Step 1</strong> 设\(f\in C[0, 1]\)至少有一点可微, 证明\(f\in \bigcup F_n\), 其中</p>
+
+\[F_n\doteq \left\{f\in C[0, 1]\ \middle\vert\ \exists a\in [0, 1]:\sup_{h\neq 0}\left\vert\frac{f(a+h)-f(a)}{h}\right\vert\right\} \leq n.\]
+
+  <p>若\(f\)在\(a\)点可微, 则存在\(h_0&gt;0\), 使得对于\(0&lt;\vert h\vert&lt; h_0\), 都有</p>
+
+\[\left\vert\frac{f(a+h)-f(a)}{h}\right\vert\leq\left\vert\frac{f(a+h)-f(a)}{h}-f'(a)\right\vert+\left\vert f'(a)\right\vert\leq 1+\left\vert f'(a)\right\vert.\]
+
+  <p>另一方面, 对于\(\vert h\vert \geq h_0\)的情况, 有</p>
+
+\[\left\vert\frac{f(a+h)-f(a)}{h}\right\vert\leq\frac{2\sup_{x\in[0, 1]} \vert f(x)\vert}{h_0}.\]
+
+  <p>因此</p>
+
+\[\sup_{h\neq 0}\left\vert\frac{f(a+h)-f(a)}{h}\right\vert&lt;\infty,\]
+
+  <p>故\(f\in\bigcup F_n\).</p>
+
+  <p><strong>Step 2</strong> 固定\(n\), 证明\(F_n\)是闭集.</p>
+
+  <p><strong>Step 3</strong> 固定\(n\), 证明\(F_n\)是无处稠密集. 即须证对于每一个\(f\in F_n\), 都存在一列函数\(g_k\in C[a, b]-F_n\)使得\(\{g_k\}\)一致收敛到\(f\).</p>
+
+  <p>根据Weierstraβ逼近定理, 存在多项式列\(p_k\)使得对任意\(\varepsilon&gt;0\), 存在\(N&gt;0\), 当\(k&gt;N\)时有\(\vert\vert f-p_k\vert\vert&lt; \varepsilon\)成立. 又对于多项式\(p_k\), 因为</p>
+
+\[\sup_{0\leq x\leq 1}p_k'&lt;\infty,\]
+
+  <p>所以存在折线\(g_k\)使得\(\vert\vert g_k-p_k\vert\vert&lt;\varepsilon\)并且在可微点\(\vert g_k'\vert&gt;n\). 故\(\{g_k\}\)满足我们的要求, 得证.</p>
+
+  <p><strong>Step 4</strong> 由Baire纲定理得\(\bigcup F_n\)是无处稠密集, 又\(C[a, b]\)完备, 因此存在闭区间\([0, 1]\)上处处连续但处处不可导的函数.</p>
+</blockquote>
+
+<p>在连续函数空间中, 至少有一点可微的函数所构成的集合是无处稠密的, 意味着任意至少有一点可微的函数可以由处处不可微函数一致逼近, 而反之不成立. 在这种意义上可以说处处不可导函数反而是连续函数空间中基本的元素.</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

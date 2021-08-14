@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>在网页中嵌入bilibili视频</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>在网页中嵌入bilibili视频</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/bilibili.html" class="tag">bilibili</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月26日</span>
+  </div>
+
+  <h2 id="嵌入视频框">
+        
+        
+          嵌入视频框 <a href="#嵌入视频框" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>在自己的网页里嵌入bilibili视频其实很简单. 进入bilibili网页版, 在视频下找到<strong>分享</strong>按钮并点击, 即可看到<strong>嵌入代码</strong>, 形如</p>
+
+<pre><code class="language-html">&lt;iframe src="//player.bilibili.com/player.html?aid=68945658&amp;cid=119490508&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"&gt;&lt;/iframe&gt;
+</code></pre>
+
+<p>将其复制并粘贴到自己的网页中就可以了!</p>
+<iframe src="//player.bilibili.com/player.html?aid=68945658&amp;cid=119490508&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+    
+      <h2 id="美化视频框">
+        
+        
+          美化视频框 <a href="#美化视频框" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>当然如你所见完全不修改代码的话视频框非常丑. 于是我们可以通过调整视频框的样式, 在css文件中写入</p>
+
+<pre><code class="language-css">display: block;
+margin: 20px auto;
+width: 720px;
+height: 480px;
+</code></pre>
+
+<p>来得到一个大小位置都合适的视频框.</p>
+
+<iframe src="//player.bilibili.com/player.html?aid=68945658&amp;cid=119490508&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" class="bilibili"></iframe>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

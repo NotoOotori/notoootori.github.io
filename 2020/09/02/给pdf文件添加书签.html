@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>给pdf文件添加书签</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>给pdf文件添加书签</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/pdf.html" class="tag">pdf</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年09月02日</span>
+  </div>
+
+  <p>本文主要参考pdf-bookmark的<a href="https://github.com/xianghuzhao/pdf-bookmark">项目主页</a>.</p>
+      <h2 id="安装">
+        
+        
+          安装 <a href="#安装" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>pdf-bookmark是一个python包, 运行依赖于<a href="https://www.pdflabs.com/tools/pdftk-server/">PDFtk</a>和<a href="https://www.ghostscript.com/">Ghostscript</a>, 我们要先安装这两个外部程序再运行pdf-bookmark.</p>
+
+<ol>
+  <li>
+    <p>先更新apt库并安装两个外部程序.</p>
+
+    <pre><code class="language-shell">sudo apt update
+sudo apt install pdftk-java
+sudo apt install ghostscript
+</code></pre>
+
+    <p>运行以下命令来测试是否安装成功.</p>
+
+    <pre><code class="language-shell">pdftk --version
+gs --version
+</code></pre>
+  </li>
+  <li>
+    <p>安装python3与pip3(如果已经安装则可以跳过这一步).</p>
+
+    <pre><code class="language-shell">sudo apt install python3
+sudo apt install python3-pip
+</code></pre>
+
+    <p>运行以下命令来测试是否安装成功.</p>
+
+    <pre><code class="language-shell">python3 --version
+pip3 --version
+</code></pre>
+  </li>
+  <li>
+    <p>因为我们需要pdf-bookmark的脚本文件在PATH中, 所以在全局安装pdf-bookmark.</p>
+
+    <pre><code class="language-shell">sudo -H pip3 install pdf-bookmark
+</code></pre>
+
+    <p>运行以下命令来测试是否安装成功</p>
+
+    <pre><code class="language-shell">pdf-bookmark --version
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="书签格式">
+        
+        
+          书签格式 <a href="#书签格式" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>为了给pdf文件添加书签, 我们需要先自行整理书签的内容, 保存为后缀名为bmk的文件. 一个例子如下:</p>
+
+<pre><code class="language-text">!!! collapse_level = 2
+
+!!! num_style = Roman
+!!! num_start = 3
+Introduction....vii
+Notation and Terminology....ix
+
+!!! new_index = 9
+!!! num_style = Arabic
+Chapter 1: Rings and Ideals....1
+  Rings and ring homomorphisms....1
+  Ideals. Quotient rings....2
+Chapter 2: Modules....17
+  Modules and module homomorphisms....17
+  Submodules and quotient modules....18
+Chapter 10: Completions....100
+  Topologies and completions....101
+  Exercises....113
+Chapter 11: Dimension Theory....116
+  Hilbert functions....116
+  Dimension theory of N oetherian local rings....119
+  Exercises....125
+Index....127
+</code></pre>
+
+<p>这是Atiyah写的Introduction to Commutative Algebra书的pdf版本书签的一部分. pdf文件中前言部分从iii到x, 共有8页, 从第9页开始为正文部分, 直到文件的最后.</p>
+
+<p>bmk文件的主体为书签本身, 一行代表一个书签内容, 书签标题与页码由至少4个点”<code>.</code>“分割. 缩进代表了书签之间的嵌套, 默认的缩进字符为两个空格.</p>
+
+<p>以三个感叹号”<code>!!!</code>“开始的行代表了行内命令, 每条命令都会修改某一个书签设置变量, 其效果直到另一个命令再次修改这个变量. 常用的行内命令为:</p>
+
+<ul>
+  <li><code>collapse_level</code>. 表示直到多少层为止的书签会被展开. <code>0</code>值代表每层书签都被展开. 合法值为自然数值. 默认值为<code>0</code>.</li>
+  <li><code>num_index</code>, <code>num_start</code>. 表示bmk文件中接下来为<code>num_start</code>的页码, 代表着pdf文件中的第<code>num_index</code>页. 合法值为正整数值. 默认值均为<code>1</code>.</li>
+  <li><code>num_style</code>. 表示bmk文件中接下来的页码类型. 合法值为<code>Arabic</code>, <code>Roman</code>, <code>Letters</code>. 默认值为<code>Arabic</code>.</li>
+</ul>
+    
+      <h2 id="运行">
+        
+        
+          运行 <a href="#运行" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>在同一个目录下放置pdf文件<code>input.pdf</code>以及书签bmk文件<code>bookmark.bmk</code>, 运行命令</p>
+
+<pre><code class="language-shell">pdf-bookmark -p input.pdf -b bookmark.bmk -o new.pdf
+</code></pre>
+
+<p>即可得到带书签的输出文件<code>new.pdf</code>.</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

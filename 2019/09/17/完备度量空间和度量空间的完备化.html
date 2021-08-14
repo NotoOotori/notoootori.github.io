@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>完备度量空间和度量空间的完备化</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>完备度量空间和度量空间的完备化</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90.html" class="tag">泛函分析</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月17日</span>
+  </div>
+
+  <p>在本文中为了书写方便, 在不产生歧义的时候可能会略去各度量空间的度量, 将\((X, d)\)简记为\(X\).</p>
+      <h2 id="完备度量空间的定义">
+        
+        
+          完备度量空间的定义 <a href="#完备度量空间的定义" class="anchor">#</a>
+        
+        
+      </h2>
+
+<blockquote>
+  <p>设\((X, d)\)是一个度量空间, 如果对于每一个Cauchy列\(\{x_n\}\), 都存在\(x\in X\)使得\(x_n\to x\), 则称\((X, d)\)是一个完备度量空间.</p>
+</blockquote>
+
+<p>用通俗的话来说, 就是Cauchy列都收敛的度量空间是完备的.</p>
+    
+      <h2 id="一些完备度量空间和不完备度量空间的例子">
+        
+        
+          一些完备度量空间和不完备度量空间的例子 <a href="#一些完备度量空间和不完备度量空间的例子" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>在完备性的证明中, 我们通常把待证空间的Cauchy列转化为已知空间中的Cauchy列或者其它我们所熟悉的收敛(e.g.几乎处处点点收敛), 从而先找出极限点, 在证明这个点确实是Cauchy列收敛到的极限.</p>
+    
+      <h3 id="linfty完备">
+        
+        
+          \(l^\infty\)完备 <a href="#linfty完备" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>注意这里\(l^\infty\)为有界实数列空间. 设\(\{x_n\}\)为\(l^\infty\)中Cauchy列, 由定义知: 任取\(\varepsilon&gt;0\), 存在\(N&gt;0\), 使得当\(m, n&gt;N\)时, 都有</p>
+
+\[\sup_k \left\vert{x_m}^{(k)}-{x_n}^{(k)}\right\vert&lt;\varepsilon\]
+
+<p>成立, 故\(\left\vert{x_m}^{(k)}-{x_n}^{(k)}\right\vert&lt;\varepsilon\)对任意\(k\)都成立. 固定\(k\), 关于\(n\)的实序列\({x_n}^{(k)}\)为Cauchy列, 记其收敛到\(x^{(k)}\). 故</p>
+
+\[\sup_k \left\vert{x}^{(k)}-{x_n}^{(k)}\right\vert\leq\varepsilon,\]
+
+<p>故\(x\)有界并且\(\{x_n\}\to x\).</p>
+    
+      <h3 id="ca-b-d_infty完备">
+        
+        
+          \((C[a, b], d_\infty)\)完备 <a href="#ca-b-d_infty完备" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>与上例相同, 对于每一个Cauchy列, 找到它点点收敛的极限, 再证明该极限也在空间内.</p>
+    
+      <h3 id="ca-b-d_1不完备">
+        
+        
+          \((C[a, b], d_1)\)不完备 <a href="#ca-b-d_1不完备" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>举反例. 不妨设\(a=0, b=2\), 令\(f_n(x) = \chi_{[1+1/n, 2]}(x)+n(x-1)\chi_{(1, 1+1/n)}(x)\). 于是\(f\)在\(x=1\)的左极限为0, 右极限为1, 不可能连续.</p>
+    
+      <h2 id="度量空间的完备化">
+        
+        
+          度量空间的完备化 <a href="#度量空间的完备化" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>度量空间的完备化其实我们在大一第一学期实数理论的学习中就已经接触过了:</p>
+
+<blockquote>
+  <p>已知有理数域\(\mathbb{Q}\), 想要找到满足某种完备性的集合\(\mathbb{R}\): 从域和序的角度来说要求\(\mathbb{R}\)是有序域且满足最小上确界性质, 从度量空间的角度来说是要求带有标准度量的\mathbb{R}中的Cauchy列都收敛.</p>
+</blockquote>
+
+<p>由此我们分别得到了两种完备化方式—<em>Dedekind分隔</em>和<em>Cauchy列构造</em>. 在下文我们将模仿<em>Cauchy列构造</em>来对一般的度量空间进行完备化.</p>
+    
+      <h3 id="定义">
+        
+        
+          定义 <a href="#定义" class="anchor">#</a>
+        
+        
+      </h3>
+
+<blockquote>
+  <p>设\((X, d)\)是一个度量空间, 如果存在度量空间\((\tilde{X}, \tilde{d})\)满足:</p>
+
+  <ol>
+    <li>度量空间\((\tilde{X}, \tilde{d})\)完备,</li>
+    <li>存在稠密子度量空间\((X', d')\)与\((X, d)\)等距同构,</li>
+  </ol>
+
+  <p>则称\((\tilde{X}, \tilde{d})\)是\((X, d)\)的一个完备化.</p>
+</blockquote>
+
+<p>可以证明在等距同构的意义下度量空间的完备化唯一. 接下来我们就要证明完备化的存在性和唯一性.</p>
+    
+      <h3 id="构造">
+        
+        
+          构造 <a href="#构造" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(S(X)\)为\((X, d)\)中Cauchy列全体构成的集合. 在这里我们先统一一下<em>记号</em>, \(S(X)\)空间及其商空间中的序列的元素我们分别用\(x_n\)和\([x_n]\)表示, \(X\)空间中序列的元素我们用\(x^{(k)}\)表示. 在\(S(X)\)上定义如下等价关系\(\sim\):</p>
+
+\[x\sim x'\quad\text{iff}\quad \lim_n d(x^{(n)}, x'^{(n)})=0.\]
+
+<p>从而我们可以得到商空间\(S(X)/\sim\), 记为\(\tilde{X}\). 在\(\tilde{X}\)中定义度量\(\tilde{d}\):</p>
+
+\[\tilde{d}([x], [y])\doteq \lim_n d(x^{(n)}, y^{(n)}).\]
+
+<p>我们就得到了度量空间\(\tilde{X}, \tilde{d}\).</p>
+    
+      <h3 id="良定性">
+        
+        
+          良定性 <a href="#良定性" class="anchor">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>证明对于\(x, y\in S(X)\), \(\lim_n d(x^{(n)}, y^{(n)})\)总是存在.</li>
+  <li>验证\(\sim\)是\(S(X)\)上的等价关系(trivial).</li>
+  <li>证明度量\(\tilde{d}\)的定义与代表元\(x, y\)的选取无关.</li>
+  <li>验证\(\tilde{d}\)满足度量三公理(trivial).</li>
+</ol>
+
+<p>对于1, 根据三角不等式可以推得\(\left\vert d(x^{(n)}, y^{(n)})-d(x^{(m)}, y^{(m)})\right\vert\leq d(x^{(n)}, x^{(m)})+d(y^{(n)}, y^{(m)})\). 由于\(x, y\)为Cauchy列, 即可得关于\(n\)的实序列\(\{d(x^{(n)}, y^{(n)})\}\)为Cauchy列, 则\(\lim_n d(x^{(n)}, y^{(n)})\)总是存在.</p>
+
+<p>对于3, 问题转化为: 已知\(\lim_n d(x^{(n)}, x'^{(n)})=0\), \(\lim_n d(y^{(n)}, y'^{(n)})=0\), 证明\(\lim_n d(x^{(n)}, y^{(n)})=\lim_n d(x'^{(n)}, y'^{(n)})\). 运用与1相同的方法即可得证.</p>
+    
+      <h3 id="稠密性">
+        
+        
+          稠密性 <a href="#稠密性" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>令\(X'\)表示\(S\)中常Cauchy列各自所在的等价类所构成的集合, 即\(X'=\{[\varepsilon_x]:\ x\in X\ \text{and}\ \varepsilon^{(k)}=x, \forall k\}\), 则\(X'\)为\(\tilde{X}\)的子集. 令\(\tilde{d}\)在\(X'\)上导出的度量为\(d'\), 则\((X', d')\)为度量空间. 须要证明:</p>
+
+<ol>
+  <li>度量空间\((X, d)\)与\((X', d')\)等距同构(trivial).</li>
+  <li>集合\(X'\)在\(\tilde{X}\)中稠密.</li>
+</ol>
+
+<p>对于2, 设\(x\in\tilde{X}\), 对于每个\(m\), 设\(x_m\)为常数列\({x_m}^{(k)}=x^{m}, \forall k\). 因为\(x\)是\(X\)中的Cauchy列, 所以对于任意的\(\varepsilon&gt;0\)都存在\(N&gt;0\)使得对于任意的\(n,m&gt;N\), 都有\(d(x^{(n)}, x^{(m)})&lt;\varepsilon\). 此时</p>
+
+\[\tilde{d}(x_m, x)=\lim_n d({x_m}^{(n)}, x^{(n)})=\lim_n d(x^{(m)}, x^{(n)})\leq\varepsilon,\]
+
+<p>即得证\(X'\)在\(\tilde{X}\)中稠.</p>
+    
+      <h3 id="完备性">
+        
+        
+          完备性 <a href="#完备性" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(\{[x_n]\}_1^\infty\)是\(\tilde{X}\)中的Cauchy列, 故任取\(\varepsilon&gt;0\), 存在\(N&gt;0\), 当\(m, n&gt;N\)时, 都有\(\tilde{d}(x_m, x_n)&lt;\varepsilon\). 由于\((X', d')\)在\((\tilde{X}, \tilde{d})\)中稠, 所以对于每一个\(n\)都存在常数列\(y_n\)使得\(\tilde{d}([x_n], [y_n])&lt;1/n\). 于是</p>
+
+\[\begin{aligned}
+        \tilde{d}(y_m, y_n)
+        &amp;\leq \tilde{d}(x_m, x_n)+\tilde{d}(x_m, y_m)+\tilde{d}(x_n, y_n)\\
+        &amp;&lt; \varepsilon+1/n+1/m,
+    \end{aligned}\]
+
+<p>故\(\{[y_n]\}_1^\infty\)是\(\tilde{X}\)中的Cauchy列, 同时\(\{ {y_n}^{(1)}\}_1^\infty\)是\(X\)中的Cauchy列, 记为\(y\), 有\([y]\in \tilde{X}\). 并且</p>
+
+\[\tilde{d}([y], [x_n]) \leq \tilde{d}([y], [y_n])+\tilde{d}([x_n], [y_n]) \to 0.\]
+
+<p>即\(\tilde{X}\)中任一Cauchy列\(\{[x_n]\}_1^\infty\)收敛到\(\tilde{X}\)中元素\([y]\), 得证\(\tilde{X}\)完备.</p>
+    
+      <h3 id="唯一性">
+        
+        
+          唯一性 <a href="#唯一性" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(\tilde{Y}\)也是\(X\)的完备化, 那么\(X\)等距同构于\(\tilde{Y}\)的稠密子空间\(Y'\), 记该等距同构为\(\varphi\). 对于\(\tilde{X}\)中的每个元素\([x]\), 存在\(X'\)中的Cauchy列\(\{[x_n]\}\to [x]\). 于是我们可以得到\(Y'\)中的Cauchy列\(\{\varphi([y_n])\}\), 设它收敛到\([y]\), 那么映射\(\psi:\ [x]\mapsto [y]\)即为从\(\tilde{X}\)到\(\tilde{Y}\)的等距同构(其中等距性由\(\varphi\)的等距性和度量函数的连续性所保证).</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>阿里云图床配置使用尝试</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>阿里云图床配置使用尝试</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E5%9B%BE%E5%BA%8A.html" class="tag">图床</a>&nbsp;
+  
+    
+    <a href="/tags/OSS.html" class="tag">OSS</a>&nbsp;
+  
+    
+    <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91.html" class="tag">阿里云</a>&nbsp;
+  
+    
+    <a href="/tags/PicGo.html" class="tag">PicGo</a>&nbsp;
+  
+    
+    <a href="/tags/Typora.html" class="tag">Typora</a>&nbsp;
+  
+</span>
+
+    <span class="date">2021年08月10日</span>
+  </div>
+
+  <p>本文使用的操作系统为 Windows.</p>
+      <h2 id="阿里云-oss-购买">
+        
+        
+          阿里云 OSS 购买 <a href="#阿里云-oss-购买" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>我们在阿里云上购买对象存储服务 (OSS), 并以此作为我们的图床.</p>
+
+<ol>
+  <li>
+    <p>登录阿里云. 如果没有注册的话先注册, 注册的流程这里就略过了.</p>
+  </li>
+  <li>
+    <p>点击 “控制台”, 找到 “对象存储 OSS”, 并开通服务.
+<img src="1628519707-cadcd7b295ac2ba38e590fb47875a9fe.png" alt="控制台" />
+<img src="1628521262-d9b024bd591130217a045421cdc37403.png" alt="对象存储 OSS" /></p>
+  </li>
+  <li>
+    <p>点击 “概览”, 并点击 “创建 Bucket”. 按照图中示例填写好创建 Bucket 所需的信息, 其中要注意的是 “读写权限” 应为 “公共读”, “Bucket 名称” 以及 “地域” 按照自己喜好填写, 其余服务均可以选择不开启.
+<img src="1628521625-c3c5df3669df62a72dc891c88757258b.png" alt="创建 Bucket 按钮" />
+<img src="1628521859-d25db81d08227e56ab98e7bc84cabec6.png" alt="创建 Bucket 填写" /></p>
+  </li>
+  <li>
+    <p>创建完成后, 我们还要记录一下相关信息, 以便之后使用. 首先找到这个新建的 Bucket 的概览, 记下由图中红框标示的地域代号和 “外网访问 Bucket 域名”.
+<img src="1628522422-b7dda78c653e7159e34e3a62b92359ae.png" alt="Bucket 概览" /></p>
+  </li>
+  <li>
+    <p>接着鼠标悬浮在右上角头像上, 点击 “AccessKey 管理”, 安全提示时点击 “开始使用子用户 AccessKey”, 或者通过其它方式进入 “RAM 访问控制”. 在 “身份管理 – 用户” 中点击 “创建用户”, 勾选 “Open API 调用访问”. 创建成功后<strong>立即</strong>记录下 AccessKey ID 和 AccessKey Secret, 要注意<strong>页面关闭后将无法再次获取信息</strong>. 最后给该用户设置 “管理对象存储服务 (OSS) 权限”. 这样在阿里云上的操作就告一段落了.
+<img src="1628523060-49b357c2eb47cd1c7fcfb0664135a869.png" alt="AccessKey 管理按钮" />
+<img src="1628523198-4768ac06fa7ca5741cf4666a11404f32.png" alt="创建用户按钮" />
+<img src="1628524395-1bd373019aacf03c0db84efb5e84c1a2.jpg" alt="创建用户填写" />
+<img src="1628523773-a0daa796a8d0ab5a1948d6a96bca651f.png" alt="用户信息" />
+<img src="1628524096-94b1f4f2f82ea2dc60601b37888d8e37.png" alt="添加权限按钮" />
+<img src="1628524211-a8e7e6b48b786a6218f0b66e4d20d396.png" alt="添加权限" /></p>
+  </li>
+</ol>
+    
+      <h2 id="安装并配置-picgo-core">
+        
+        
+          安装并配置 PicGo-Core <a href="#安装并配置-picgo-core" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p><a href="https://github.com/PicGo/PicGo-Core">PicGo-Core</a>(<a href="https://picgo.github.io/PicGo-Core-Doc/">文档</a>) 是一款命令行图片上传工具, 我们以此将本地图片上传到图床上并获取访问链接.</p>
+
+<ol>
+  <li>下载安装 <a href="https://github.com/coreybutler/nvm-windows">nvm for Windows</a>.</li>
+  <li>
+    <p>安装 PicGo-Core.</p>
+
+    <pre><code class="language-shell">npm install picgo -g # or `yarn global add picgo`
+</code></pre>
+  </li>
+  <li>
+    <p>配置 PicGo-Core 所使用的 Uploader.</p>
+
+    <pre><code class="language-shell">picgo set uploader # configure an uploader
+picgo use uploader # select an uploader to use
+</code></pre>
+
+    <ul>
+      <li>accessKeyId: 之前记录下的用户的 “AccessKey ID”.</li>
+      <li>accessKeySecret: 之前记录下的用户的 “AccessKey Secret”.</li>
+      <li>bucket: 创建 Bucket 时所填写的 “Bucket 名称”.</li>
+      <li>area: Bucket 概览中的地域代号.</li>
+      <li>path: 设置上传的图片在云中所存储的路径, 可以设为空.</li>
+      <li>customUrl: Bucket 概览中的 “外网访问 Bucket 域名”.</li>
+      <li>options: 针对图片的一些后缀处理参数 PicGo 2.2.0+ PicGo-Core 1.4.0+, 我们设为空就可以了.</li>
+    </ul>
+  </li>
+  <li>
+    <p>现在 PicGo-Core 已经可以使用了, 尝试一下吧!</p>
+
+    <pre><code class="language-shell">picgo upload # upload the image in clipboard
+picgo upload &lt;filename&gt; # upload &lt;filename&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>给 PicGo-Core 添加插件, <a href="https://github.com/PicGo/Awesome-PicGo">Awesome-PicGo</a> 中列举了现有的插件, 去挑选想用的吧. 例如我们不希望上传到图床的图片保留原来的文件名 (这样文件名容易重复, 而重复的时候旧的图片就会被覆盖), 就可以用 <a href="https://github.com/liuwave/picgo-plugin-rename-file">picgo-plugin-rename-file</a> 插件来自动重命名图片.</p>
+
+    <pre><code class="language-shell">picgo install picgo-plugin-rename-file # install plugin
+picgo set plugin # configure plugin
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="配置-typora">
+        
+        
+          配置 Typora <a href="#配置-typora" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>按照下图配置 Typora 即可完成图片拖入自动上传啦!
+<img src="1628527381-157d378b98cf99b9ce661524471c9505.png" alt="Typora 设置" /></p>
+    
+      <h2 id="参考资料">
+        
+        
+          参考资料 <a href="#参考资料" class="anchor">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li><a href="https://zhuanlan.zhihu.com/p/138878534">https://zhuanlan.zhihu.com/p/138878534</a></li>
+</ol>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

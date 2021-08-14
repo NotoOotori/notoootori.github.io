@@ -1,0 +1,411 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>度量空间的定义及几个例子</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>度量空间的定义及几个例子</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90.html" class="tag">泛函分析</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月05日</span>
+  </div>
+
+  <h2 id="度量空间的定义">
+        
+        
+          度量空间的定义 <a href="#度量空间的定义" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>度量是集合中衡量两个元素距离的函数, 有了度量我们就可以定义拓扑定义极限定义连续, 在数学分析上有关连续性的结论都可以直接推广到度量空间上.</p>
+
+<p>度量空间的严格定义如下: 给定集合\(X\), 设\(x, y, z\in X\). 如果有度量函数\(d:X\times X\to \mathbb{R}\cup\{0\}\), 并且满足以下三条公理:</p>
+
+<ol>
+  <li>(对称性) \(d(x, y)=d(y, x)\),</li>
+  <li>(正则性) \(d(x, y)=0\)当且仅当\(x=y\),</li>
+  <li>(三角不等式) \(d(x, y) + d(y, z)\geq d(x, z)\),</li>
+</ol>
+
+<p>则称\((X, d)\)为度量空间.</p>
+    
+      <h2 id="度量空间的例子">
+        
+        
+          度量空间的例子 <a href="#度量空间的例子" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>泛函分析中我们关心函数空间的性质, 所以下面的例子大多是度量函数空间.</p>
+    
+      <h3 id="欧式空间mathbbrd与欧式距离">
+        
+        
+          欧式空间\(\mathbb{R}^d\)与欧式距离 <a href="#欧式空间mathbbrd与欧式距离" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>欧式空间大家比较熟悉. 令\(x = (x_1, x_2, \dotsc x_d)\), \(x = (y_1, y_2, \dotsc y_d)\), 则欧式距离</p>
+
+\[d(x, y)\doteq \sum_1^d(x_i-y_i)^2,\]
+
+<p>很容易验证欧式距离满足度量三公理, 因此欧式空间带上标准欧式距离为度量空间. 事实上欧氏距离可以由内积导出, 因此该空间其实具有比一般度量空间更好的性质, 是内积空间.</p>
+    
+      <h3 id="连续函数空间ca-b">
+        
+        
+          连续函数空间\(C[a, b]\) <a href="#连续函数空间ca-b" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(C[a, b]\)为闭区间\([a, b]\)上连续函数全体组成的集合. 令\(x, y\in C[a, b]\), 定义</p>
+
+\[d_\infty(x, y)\doteq \max_{a\leq t\leq b}\left\vert x(t)-y(t)\right\vert.\]
+
+<p>同样很容易验证\(d_\infty\)满足度量三公理, 因此\((C[a, b], d_\infty)\)为度量空间.</p>
+
+<p>在\(C[a, b]\)上还可定义以下\(p\)度量</p>
+
+\[d_p(x, y)\doteq \left(\int_a^b\left\vert x(t)-y(t)\right\vert^p\mathrm{d}t\right)^{1/p},\]
+
+<p>其中最外层取\(1/p\)次方的目的是满足范数的齐次性公理, 分析学得扎实的同学可以利用Minkovski不等式证明\(d_p\)也满足度量三公理, 同时该度量可以由范数导出, 为赋范空间. 特别地, 当\(p=2\)时, \(d_p\)可以由内积导出.</p>
+    
+      <h3 id="实数列空间s">
+        
+        
+          实数列空间\(s\) <a href="#实数列空间s" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(s\)为实数列全体构成的集合, 由于实数列也可看作从\(\mathbb{N}\)到\(\mathbb{R}\)的映射, 所以\(s\)也可视为函数空间. 令\(x=(x_1, x_2, \dotsc, x_n, \dotsc)\), \(y=(y_1, y_2, \dotsc, y_n, \dotsc)\), 定义</p>
+
+\[d(x, y)\doteq\sum_{n=1}^\infty 2^{-n}\frac{\left\vert x_n-y_n\right\vert}{1+\left\vert x_n-y_n\right\vert},\]
+
+<p>其中\(2^{-n}\)为收敛因子, 保证\(d(x, y)\)得到的结果一定是非负实数. 很容易验证\(d\)满足度量第一第二公理, 接下来我们来验证三角不等式.</p>
+
+<p>设\(z=(z_1, z_2, \dotsc, z_n, \dotsc)\), 有</p>
+
+\[\begin{aligned}
+        1-\frac{1}{1+\left\vert x_n-y_n\right\vert}&amp;\leq 1-\frac{1}{1+\left\vert x_n-z_n\right\vert+\left\vert y_n-z_n\right\vert}\\
+        &amp;= \frac{\left\vert x_n-z_n\right\vert}{1+\left\vert x_n-z_n\right\vert+\left\vert y_n-z_n\right\vert} + \frac{\left\vert y_n-z_n\right\vert}{1+\left\vert x_n-z_n\right\vert+\left\vert y_n-z_n\right\vert}\\
+        &amp;\leq \frac{\left\vert x_n-z_n\right\vert}{1+\left\vert x_n-z_n\right\vert} + \frac{\left\vert y_n-z_n\right\vert}{1+\left\vert y_n-z_n\right\vert}\\
+        &amp;= \left(1-\frac{1}{1+\left\vert x_n-z_n\right\vert}\right)+\left(1-\frac{1}{1+\left\vert y_n-z_n\right\vert}\right),
+    \end{aligned}\]
+
+<p>代入\(d\)级数的每一项即可得证三角不等式, 于是\((s, d)\)为度量空间.</p>
+    
+      <h3 id="可测函数空间s">
+        
+        
+          可测函数空间\(S\) <a href="#可测函数空间s" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(E\)为测度有限的集合, \(S\)为\(E\)上Lebesgue可积函数全体构成的集合. 令\(x, y\in S\), 类似于\(s\)空间, 我们定义</p>
+
+\[d(x, y)\doteq\int_E\frac{\left\vert x_n-y_n\right\vert}{1+\left\vert x_n-y_n\right\vert}\mathrm{d}t,\]
+
+<p>我们可以用与\(s\)空间相同的办法证明\(d\)满足度量三公理, 于是\((S, d)\)为度量空间.</p>
+    
+      <h3 id="离散空间x">
+        
+        
+          离散空间\(X\) <a href="#离散空间x" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>设\(D\)为非空集合, \(x, y\in D\), 定义</p>
+
+\[d(x, y)\doteq
+    \begin{cases}
+        0, &amp;x=y,\\
+        1, &amp;x\neq y,
+    \end{cases}\]
+
+<p>不难验证\(d\)是度量, 于是\((X, d)\)是度量空间, 称为离散空间.</p>
+    
+      <h2 id="度量空间中的收敛">
+        
+        
+          度量空间中的收敛 <a href="#度量空间中的收敛" class="anchor">#</a>
+        
+        
+      </h2>
+    
+      <h3 id="定义">
+        
+        
+          定义 <a href="#定义" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>有了度量空间我们就可以定义极限与收敛的概念: 设\((X, d)\)为度量空间, \(\{x_n\}\)为\(X\)中一序列, \(x\in X\), 如果对任意\(\varepsilon&gt;0\), 存在整数\(N&gt;0\), 使得对于任意的整数\(n&gt;N\), 都有\(d(x_n, x)&lt;\varepsilon\), 那么称序列\(\{x_n\}\)的<strong>极限</strong>为\(x\), 也称序列\(\{x_n\}\)<strong>收敛</strong>于\(x\).</p>
+    
+      <h3 id="例子">
+        
+        
+          例子 <a href="#例子" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>现在我们来看一看之前提到的度量空间中的收敛都是什么样子的.</p>
+    
+      <h4 id="连续函数空间ca-b-d_infty的收敛">
+        
+        
+          连续函数空间\((C[a, b], d_\infty)\)的收敛 <a href="#连续函数空间ca-b-d_infty的收敛" class="anchor">#</a>
+        
+        
+      </h4>
+
+<p>当度量取最大值度量\(d_\infty\)时, 该空间的收敛就是数学分析中我们熟悉的一致收敛. 因为一致收敛保函数连续性, 所以度量空间\((C[a, b], d_\infty)\)是完备的.</p>
+    
+      <h4 id="可测函数空间s-d的收敛">
+        
+        
+          可测函数空间\((S, d)\)的收敛 <a href="#可测函数空间s-d的收敛" class="anchor">#</a>
+        
+        
+      </h4>
+
+<p>可测函数空间\((S, d)\)中的收敛与依测度收敛等价. 依测度收敛定义如下: 设\(\{x_n\}\)为可测函数序列, \(x\in S\), 如果对于任意的\(\varepsilon&gt;0\), 都有</p>
+
+\[\lim_{n\to\infty}m\{t\in E:\left\vert x_n(t)-x(t)\right\vert\geq\varepsilon\}=0,\]
+
+<p>则称序列\(\{x_n\}\)依测度收敛到\(x\). 下面给出两种收敛等价的证明:</p>
+
+<ul>
+  <li>
+    <p>设\(\{x_n\}\)依测度收敛到\(x\):</p>
+
+    <p>对任意的\(\varepsilon&gt;0\), 存在\(N&gt;0\), 使得当\(n&gt;N\)时, 有\(m\{t\in E:\left\vert x_n(t)-x(t)\right\vert\geq\varepsilon\}&lt;\varepsilon\), 于是</p>
+
+\[\begin{aligned}
+          \int_E\frac{\left\vert x_n-x\right\vert}{1+\left\vert x_n-x\right\vert}\mathrm{d}t &amp;= \left(\int_{\left\vert x_n-x\right\vert&lt;\varepsilon}+\int_{\left\vert x_n-x\right\vert\geq\varepsilon}\right)\frac{\left\vert x_n-x\right\vert}{1+\left\vert x_n-x\right\vert}\mathrm{d}t\\
+          \leq\varepsilon\cdot m(E)+1\cdot\varepsilon
+      \end{aligned}\]
+
+    <p>故\(\{x_n\}\)依度量\(d\)收敛到\(x\).</p>
+  </li>
+  <li>
+    <p>设\(\{x_n\}\)依度量\(d\)收敛到\(x\):</p>
+
+    <p>根据盐水不等式, 有</p>
+
+\[\begin{aligned}
+          d(x_n, x)
+          &amp;\geq\int_{\left\vert x_n-x\right\vert\geq\varepsilon}\frac{\left\vert x_n-x\right\vert}{1+\left\vert x_n-x\right\vert}\mathrm{d}t\\
+          &amp;\geq\int_{\left\vert x_n-x\right\vert\geq\varepsilon}\frac{\varepsilon}{1+\varepsilon}\mathrm{d}t\\
+          &amp;= \frac{\varepsilon}{1+\varepsilon}m\{\left\vert x_n-x\right\vert\geq\varepsilon\},
+      \end{aligned}\]
+
+    <p>因为\(d(x_n, x)\to 0\), 根据夹逼原理, 有</p>
+
+\[\frac{\varepsilon}{1+\varepsilon}m\{\left\vert x_n-x\right\vert\geq\varepsilon\}\to 0,\]
+
+    <p>即\(m\{\left\vert x_n-x\right\vert\geq\varepsilon\}\to 0\), 证毕.</p>
+  </li>
+</ul>
+    
+      <h3 id="不同度量可以导出相同的收敛">
+        
+        
+          不同度量可以导出相同的收敛 <a href="#不同度量可以导出相同的收敛" class="anchor">#</a>
+        
+        
+      </h3>
+
+<p>同一种收敛可以由不同的度量导出, 这是由可度量拓扑空间的度量不唯一造成的, 下面我们将研究两个例子: 欧式空间\(\mathbb{R}^d\)和\(S\)空间.</p>
+    
+      <h4 id="欧式空间mathbbrd的不同度量">
+        
+        
+          欧式空间\(\mathbb{R}^d\)的不同度量 <a href="#欧式空间mathbbrd的不同度量" class="anchor">#</a>
+        
+        
+      </h4>
+
+<p>欧式空间除了常见的欧式度量及\(p\)度量之外, 还有一种度量</p>
+
+\[d(x, y)\doteq\min\{\left\vert\left\vert x-y\right\vert\right\vert_2, 1\}.\]
+
+<p>在这种度量下, \((\mathbb{R}^d, d)\)的子集全部都为有界集, 从中很容易可以找到是有界闭集但不是紧集的例子.</p>
+    
+      <h4 id="可测函数空间s的不同度量">
+        
+        
+          可测函数空间\(S\)的不同度量 <a href="#可测函数空间s的不同度量" class="anchor">#</a>
+        
+        
+      </h4>
+
+<p>上文中我们证明了空间\((S, d)\)中对应的收敛为依测度收敛. 参考<a href="https://en.wikipedia.org/wiki/Convergence_in_measure">Wikipedia</a>, 我们找到了另外两种”显著”与\(d\)不同的度量, 也对应于依测度收敛, 其中它们满足度量三公理我们在此就不证明了[clarification needed].</p>
+    
+      <h5 id="度量displaystyle-d_1f-gdoteq-inf_delta0mleftvert-f-grightvertgeqdeltadelta">
+        
+        
+          度量\(\displaystyle d_1(f, g)\doteq \inf_{\delta&gt;0}(m\{\left\vert f-g\right\vert\geq\delta\}+\delta)\) <a href="#度量displaystyle-d_1f-gdoteq-inf_delta0mleftvert-f-grightvertgeqdeltadelta" class="anchor">#</a>
+        
+        
+      </h5>
+
+<ul>
+  <li>
+    <p>设\(\{x_n\}\)依测度收敛到\(x\):</p>
+
+    <p>则\(m(\left\vert x_n-x\right\vert\geq\varepsilon)\to 0\), 于是对任意的\(\varepsilon&gt;0\), 存在\(N&gt;0\), 使得\(m\left\{\left\vert x_n-x\right\vert\geq\varepsilon\right\}+\varepsilon \leq 2\varepsilon\), 故</p>
+
+\[d_2(x_n, x)=\inf_{\delta&gt;0}(m\left\{\left\vert x_n-x\right\vert\geq\delta\right\}+\delta)\to 0.\]
+  </li>
+  <li>
+    <p>设\(\{x_n\}\)依度量收敛到\(x\):</p>
+
+    <p>反证法, 如果\(\{x_n\}\)不依度量收敛到\(x\), 则存在\(\delta_0&gt;0\), 存在\(\varepsilon_0&gt;0\), 使得对任意的\(N&gt;0\), 都存在\(n&gt;N\)使得\(m(\left\vert x_n-x\right\vert\geq\delta_0)\geq\varepsilon_0\). 由此可得一列趋于无穷的\(n\), 记为\(\mathcal{N}\). 对于任意\(n\in\mathcal{N}\), 有</p>
+
+\[\begin{aligned}
+          \inf_{\delta&gt;0}(m\left\{\left\vert x_n-x\right\vert\geq\delta\right\}+\delta)
+          &amp;\geq\inf_{\delta&gt;0}m\left\{\left\vert x_n-x\right\vert\geq\delta\right\}+\inf_{\delta&gt;0}\delta\\
+          &amp;\geq m\left\{\left\vert x_n-x\right\vert\geq\delta_0\right\}\\
+          &amp;\geq\varepsilon_0
+      \end{aligned}\]
+
+    <p>成立, 与\(\{x_n\}\)依度量收敛到\(x\)矛盾.</p>
+  </li>
+</ul>
+    
+      <h5 id="度量d_2f-gdoteq-int_eminleftvert-f-grightvert-1mathrmdt">
+        
+        
+          度量\(d_2(f, g)\doteq \int_E\min\{\left\vert f-g\right\vert, 1\}\mathrm{d}t\) <a href="#度量d_2f-gdoteq-int_eminleftvert-f-grightvert-1mathrmdt" class="anchor">#</a>
+        
+        
+      </h5>
+
+<ul>
+  <li>
+    <p>设\(\{x_n\}\)依测度收敛到\(x\):</p>
+
+    <p>则\(\int_E\min\{\left\vert x_n-x\right\vert, 1\}\mathrm{d}t\to 0\). 因为对任意的\(0&lt;\varepsilon&lt;1\),</p>
+
+\[\begin{aligned}
+          \varepsilon m\left\{\left\vert x_n-x\right\vert\geq\varepsilon\right\}
+          &amp;= \int_{\left\vert x_n-x\right\vert\geq\varepsilon}\varepsilon\mathrm{d}t\\
+          &amp;\leq \int_E\min\{\left\vert x_n-x\right\vert, 1\}\mathrm{d}t\\
+          &amp;\to 0 \text{ as }n\to\infty
+      \end{aligned}\]
+
+    <p>都成立, 因此\(m\left\{\left\vert x_n-x\right\vert\geq\varepsilon\right\}\to 0\)对任意的\(\varepsilon&gt;0\)都成立, 即\(\{x_n\}\)依测度收敛到\(x\).</p>
+  </li>
+  <li>
+    <p>设\(\{x_n\}\)依度量收敛到\(x\):</p>
+
+    <p>则对任意的\(\varepsilon&gt;0\), 存在\(N&gt;0\), 使得对于任意的\(n&gt;N\), 都有\(m\left\{\left\vert x_n-x\right\vert\geq\varepsilon\right\}\to 0\)成立. 由于</p>
+
+\[\begin{aligned}
+          \int_E\min\{\left\vert x_n-x\right\vert, 1\}\mathrm{d}t
+          &amp;= \left(\int_{\left\vert x_n-x\right\vert\geq\varepsilon}+\int_{\left\vert x_n-x\right\vert&lt;\varepsilon}\right)\min\{\left\vert x_n-x\right\vert, 1\}\mathrm{d}t\\
+          &amp;\leq 1\cdot\varepsilon + \varepsilon m(E),
+      \end{aligned}\]
+
+    <p>故\(\{x_n\}\)依度量\(d\)收敛到\(x\). 证毕.</p>
+  </li>
+</ul>
+    
+      <h2 id="注记">
+        
+        
+          注记 <a href="#注记" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>上文提到了依测度收敛的概念, 在这里就回顾一下几乎处处收敛, 依\(L^1\)范数收敛和依测度收敛之间的关系.</p>
+
+<ul>
+  <li>除去几乎处处收敛或依\(L^1\)范数收敛能推出依测度收敛之外, 没有别的推出关系.</li>
+  <li>令\(\displaystyle x_n=\frac{1}{n}\chi_{[0, n]}\), 则序列\(\{x_n\}\)几乎处处收敛并依测度收敛到函数\(x=0\), 但不依\(L^1\)范数收敛到\(x\).</li>
+  <li>记\(I_{nm}=\left[\frac{1}{m}\sum_{1}^n\frac{1}{j}, \frac{1}{m}\sum_{1}^{n+1}\frac{1}{j}\right]\), 将\(I_{nm}\)排成一列, 记为\(I_k\), 定义\(x_k=\chi_{I_k}\), \(x=0\), 则序列\(\{x_k\}\)依测度收敛并依\(L^1\)范数收敛到\(x\), 但是不几乎处处收敛到\(x\).(<a href="https://en.wikipedia.org/wiki/Convergence_in_measure">Wikipedia</a>中给出了一种不需要重排的构造, 思路大同小异)</li>
+</ul>
+    
+      <h2 id="问题">
+        
+        
+          问题 <a href="#问题" class="anchor">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>如何证明\(d_p\)是空间\(C[a, b]\)的度量?</li>
+  <li>可测函数空间\((S, d)\)完备吗? 这个空间的拓扑长什么样子呢?</li>
+</ol>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

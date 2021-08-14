@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>Ubuntu18-04搭建VPN服务器</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>Ubuntu18-04搭建VPN服务器</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/Ubuntu.html" class="tag">Ubuntu</a>&nbsp;
+  
+    
+    <a href="/tags/shadowsocks.html" class="tag">shadowsocks</a>&nbsp;
+  
+    
+    <a href="/tags/VPN.html" class="tag">VPN</a>&nbsp;
+  
+    
+    <a href="/tags/vi.html" class="tag">vi</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月21日</span>
+  </div>
+
+  <p>本文中<code>&lt;something&gt;</code>代表一个变量.</p>
+      <h2 id="步骤一-租用云服务器">
+        
+        
+          步骤一 租用云服务器 <a href="#步骤一-租用云服务器" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>前往云服务器商家租用云服务器, 最好能获得服务器的<em>root权限</em>. 本人选用的是<a href="https://www.vultr.com">vultr</a>.</p>
+
+<p>租用成功后, 得到服务器ip地址<code>&lt;server-ip&gt;</code>, 用户名<code>&lt;user-name&gt;</code>和登录密码<code>&lt;user-password&gt;</code>.</p>
+    
+      <h2 id="步骤二-通过ssh连接到服务器">
+        
+        
+          步骤二 通过SSH连接到服务器 <a href="#步骤二-通过ssh连接到服务器" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>下载<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>并安装. 安装完成后运行, <code>Host Name</code>项填入<code>&lt;server-ip&gt;</code>, <code>Port</code>项填入<code>22</code>, <code>Connection Type</code>项选择<code>SSH</code>, 其余设置保持默认, 此时点击<code>Open</code>即可连接到服务器, 按照提示依次输入用户名<code>&lt;user-name&gt;</code>和登录密码<code>&lt;user-password&gt;</code>登录.</p>
+    
+      <h2 id="步骤三-安装并配置shadowsocks">
+        
+        
+          步骤三 安装并配置Shadowsocks <a href="#步骤三-安装并配置shadowsocks" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>输入以下命令安装<code>shadowsocks-libev</code>.</p>
+
+<pre><code class="language-shell">sudo apt-get update
+sudo apt install shadowsocks-libev
+</code></pre>
+
+<p>Shadowsocks的配置文件存储在<code>/etc/shadowsocks-libev/config.json</code>, 运行<code>vi /etc/shadowsocks-libev/config.json</code>对该文件进行编辑, 不熟悉文本编辑器<code>vim</code>的读者可以参考本文附录部分. 编辑完成后的文件应该形如:</p>
+
+<pre><code class="language-json">{
+  "server": "&lt;server-ip&gt;",
+  "server_port": &lt;server-port&gt;,
+  "local_port": 1080,
+  "password": "&lt;your-password&gt;",
+  "timeout": 600,
+  "method": "aes-256-cfb"
+}
+</code></pre>
+
+<p>其中<code>&lt;server-port&gt;</code>为您的服务器向外开放的端口.</p>
+
+<p>更改<code>config.json</code>之后, 需要重新启动Shadowsocks:</p>
+
+<pre><code class="language-shell">sudo systemctl restart shadowsocks-libev.service
+</code></pre>
+
+<p>最后配置防火墙开放端口:</p>
+
+<pre><code class="language-shell">sudo ufw allow &lt;server-port&gt;
+</code></pre>
+
+<p>成功啦!</p>
+    
+      <h2 id="附录a-文本编辑器vi使用简易教程">
+        
+        
+          附录A 文本编辑器<code>vi</code>使用简易教程 <a href="#附录a-文本编辑器vi使用简易教程" class="anchor">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>在<code>bash</code>中输入<code>vi &lt;your-file&gt;</code>打开文件.</li>
+  <li>按下<code>i</code>键进入编辑模式.</li>
+  <li>使用←→↑↓键移动光标, 使用<code>backspace</code>键或<code>delete</code>键删除文字, 使用字母键添加文字, 使用<code>enter</code>键换行.</li>
+  <li>编辑完成后按下<code>esc</code>键退出编辑模式.</li>
+  <li>输入<code>:wq</code>并按下<code>enter</code>键来保存修改并退出.</li>
+</ol>
+
+<p>学会啦!</p>
+    
+      <h2 id="附录b-更新服务端并更改加密方式">
+        
+        
+          附录B 更新服务端并更改加密方式 <a href="#附录b-更新服务端并更改加密方式" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>在2021年1月2日, 我们突然发现shadowsocks的客户端移除了”aes-256-cfb”加密方式, 于是我们决定更改为”chacha20-ietf-poly1305”, 流程如下.</p>
+
+<p>先输入以下命令更新<code>shadowsocks-libev</code>.</p>
+
+<pre><code class="language-shell">sudo apt-get update
+sudo apt upgrade shadowsocks-libev
+</code></pre>
+
+<p>再更改Shadowsocks的配置文件, 运行<code>vi /etc/shadowsocks-libev/config.json</code>. 编辑完成后的文件应该形如:</p>
+
+<pre><code class="language-json">{
+  "server": "&lt;server-ip&gt;",
+  "server_port": &lt;server-port&gt;,
+  "local_port": 1080,
+  "password": "&lt;your-password&gt;",
+  "timeout": 600,
+  "method": "chacha20-ietf-poly1305"
+}
+</code></pre>
+
+<p>最后重新启动Shadowsocks:</p>
+
+<pre><code class="language-shell">sudo systemctl restart shadowsocks-libev.service
+</code></pre>
+    
+      <h2 id="附录c-screen的简易使用方法">
+        
+        
+          附录C screen的简易使用方法 <a href="#附录c-screen的简易使用方法" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>首先用命令<code>screen -xR</code>进入screen, 如果已经有screen session的话就进入, 没有的话就新建一个. 现在运行需要在后台运行的命令. 最后再用<code>Ctrl+A, D</code>快捷键退出screen即可. 此时我们已经可以放心的结束ssh进程了, 后台进程不会被杀.</p>
+    
+      <h2 id="参考资料">
+        
+        
+          参考资料 <a href="#参考资料" class="anchor">#</a>
+        
+        
+      </h2>
+
+<!-- 1.
+    <https://vpntut.com/shadowsocks-on-ubuntu/> -->
+<ol>
+  <li>https<nolink>://vpntut.com/shadowsocks-on-ubuntu/ (失效链接)</nolink></li>
+  <li><a href="https://www.linuxbabe.com/networking/shadowsocks-libev-ubuntu-16-04-server">https://www.linuxbabe.com/networking/shadowsocks-libev-ubuntu-16-04-server</a></li>
+  <li><a href="https://vitux.com/how-to-change-sudo-password-in-ubuntu/">https://vitux.com/how-to-change-sudo-password-in-ubuntu/</a></li>
+</ol>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

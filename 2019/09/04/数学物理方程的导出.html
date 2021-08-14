@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>数学物理方程的导出</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>数学物理方程的导出</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html" class="tag">偏微分方程</a>&nbsp;
+  
+</span>
+
+    <span class="date">2019年09月04日</span>
+  </div>
+
+  <p>在常微分方程中, 我们研究了一阶常微分方程解的存在唯一性以及常系数线性微分方程组的一般解法. 而在偏微分方程中, 我们难以对一般的方程进行分析, 因此这学期的课程中我们将重点研究三个物理学中应用广泛的方程, 分别是波动方程, 热传导方程和位势方程. 在进行方程的导出之前先强调一点, 如果方程差了哪怕一个加减号, 可能原方程可用的研究方法得到的结论就都不成立了, 所以要额外小心.</p>
+      <h2 id="波动方程">
+        
+        
+          波动方程 <a href="#波动方程" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>波动方程可以由弦振动问题引出. 假设有一根密度均匀的细绳在竖直平面中, 绳子具有弹性而不具有塑性(只抗拉伸不抗弯曲), 并且绳上的每个质点沿竖直方向作微小振动. 令绳子上各质点的横坐标为\(x\), 时间为\(t\). 已知绳子的线密度为\(\rho\); 绳子上各点受到的外力密度为\(\rho f(x, t)\); 绳内张力\(T\)<strong>恒定</strong>与\(x, t\)无关, 可在平衡位置时测得其大小. 而模型待求的变量为绳上各质点在各时刻的空间位置\((x, u(x, t))\).</p>
+
+<p>利用牛顿第二定律\(F=ma\)导出方程, 这是老师讲的方法. 取横坐标从\(x\)到\(x+\mathrm{d}x\)的一小段绳子, 其质量为\(\rho\mathrm{d}x\), 加速度约为\(u_{tt}\). 其受到的力分别为外力和两端所受张力, 其中根据假设张力方向为绳子切向, 并朝向绳子两端. 于是合力</p>
+
+\[\begin{aligned}
+    F &amp;= \rho f(x, t)\mathrm{d}x + T(x+\mathrm{d}x, t)\frac{u_x(x+\mathrm{d}x, t)}{\sqrt{1+u_x^2(x+\mathrm{d}x, t)}} - T(x, t)\frac{u_x(x, t)}{\sqrt{1+u_x^2(x, t)}}\\
+    &amp;\approx \rho f(x, t)\mathrm{d}x + T\cdot(u_x(x+\mathrm{d}x, t) - u_x(x, t)),
+\end{aligned}\]
+
+<p>其中\(T\)为常数, \(u_x\)足够小. 令\(a^2=T/\rho\), \(\mathrm{d}x\)趋近于0, 则方程变为:</p>
+
+\[u_{tt}-a^2u_{xx}=f(x, t).\]
+
+<p>我们称之为一维波动方程, 或者弦振动方程, 它是二阶线性偏微分方程.</p>
+
+<p>若将一维的绳子推广到高维, 令\(u=u(x_1, x_2, \dotsc, x_n, t)\), 则方程变为:</p>
+
+\[u_{tt}-a^2\Delta u=f(x_1, x_2, \dotsc, x_n, t).\]
+
+<p>上述推导过程中对加速度的近似和牛顿第二定律对非质点物体的运用略显不严谨, 可以考虑采用离散化绳子将其看作一个个质点, 也可以考虑采用积分形式的动量守恒定律进行推导:</p>
+
+<p>设绳子中两点为\(a, b\), 动量变化为</p>
+
+\[\int_a^b\left[\left(\rho\frac{\partial u}{\partial t}\right)_{t=t_2}-\left(\rho\frac{\partial u}{\partial t}\right)_{t=t_1}\right]\mathrm{d}t.\]
+
+<p>所受冲量为</p>
+
+\[\int_{t_1}^{t_2}\left[\left(T\frac{\partial u}{\partial x}\right)_{x=b}-\left(T\frac{\partial u}{\partial x}\right)_{x=a}\right]\mathrm{d}t + \int_{t_1}^{t_2}\mathrm{d}t\int_a^bf\mathrm{d}x,\]
+
+<p>由\((a, b)\)和\((t_1, t_2)\)的任意性即可推得一维波动方程.</p>
+    
+      <h2 id="热传导方程">
+        
+        
+          热传导方程 <a href="#热传导方程" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>给定一空间区域, 假定区域中充满了各向同性的均匀介质, 并且与周围介质有热交换, 我们关心任意时刻\(t\)每个点\((x,y,z)\)的温度. 已知热源强度\(F(x,y,z,t)\), 介质密度为\(\rho\), 热传导系数为\(k\), 比热为\(c\). 利用能量守恒定律\(\Delta E=W\)导出方程. 对于小区域\(D\), 根据公式\(\Delta E=cm\Delta t\), 有</p>
+
+\[\Delta E = \int_Dc\rho(u_{t=t_2}-u_{t=t_1})\mathrm{d}V = \int_{t_1}^{t_2}\mathrm{d}t\int_Dc\rho u_t\mathrm{d}V.\]
+
+<p>而总功包含\(D\)中热源做的功以及边界向内热传导的功, 并且根据Fourier导热定律, 在一定条件下热流向量与温度梯度成正比(系数为负), 于是</p>
+
+\[W = \int_{t_1}^{t_2}\mathrm{d}t\int_{D}F\mathrm{d}V + \int_{t_1}^{t_2}\mathrm{d}t\int_{\partial D}k\frac{\partial u}{\partial n}\mathrm{d}S,\]
+
+<p>由Gauss公式得</p>
+
+\[W = \int_{t_1}^{t_2}\mathrm{d}t\int_{D}(F-k\Delta u)\mathrm{d}V.\]
+
+<p>根据\(\Delta E=W\), 并令\(a^2=k/(c\rho)\), \(f=F/(c\rho)\), 则得出最终的三维热传导方程</p>
+
+\[u_t - a^2\Delta u = f(x,y,z,t).\]
+
+<p>关于Laplace算子(Laplacian), 需要注意的是它是对欧式空间的每一个笛卡尔坐标求二阶偏导再求和, 在作用于用极坐标或者是球坐标等等的函数的时候要小心.</p>
+    
+      <h2 id="位势方程">
+        
+        
+          位势方程 <a href="#位势方程" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>观察波动方程和热传导方程可以发现, 它们两个非常接近, 只有\(u_{tt}\)和\(u_t\)的区别. 而当系统到达稳态的时候, \(u_t\equiv u_{tt}\equiv 0\), \(f\)与\(t\)无关, 也就是说波动方程和热传导方程的稳态方程是相同的, 这个稳态方程\(-a^2\Delta u=f(x_1, x_2, \dotsc, x_n)\)我们称为位势方程.</p>
+
+<p>位势方程中的位势代表着电位电势, 可见该方程在静电场中有着直接的应用.</p>
+
+<p>之前也有提到过, 偏微分方程改变哪怕一个符号也会对性质造成非常大的影响, 在波动方程中将\(t\)视为空间坐标变量, 令\(a^2\)等于1并将\(a^2\)前的减号替换为加号, 原先的波动方程就变成了位势方程.</p>
+
+
+</div>
+
+    </main>
+  </body>
+</html>

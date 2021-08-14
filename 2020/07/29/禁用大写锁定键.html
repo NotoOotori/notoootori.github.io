@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>禁用大写锁定键</title>
+    <link rel="icon" type="images/png" href="/assets/images/avatar.png" />
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML-full"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+    Macro: {
+      BN: "\\mathbb{N}",
+      BR: "\\mathbb{R}",
+      BZ: "\\mathbb{Z}"
+    }
+  }
+})
+</script>
+
+    <meta name="google-site-verification" content="d2-6LqONBUYjJuojIGvfICDhVVIbThHLxfLdw9vW8LA" />
+
+    
+
+    <script src="/assets/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <nav>
+  <ul class="right">
+    
+      <li>
+        <a href="/" >
+          主页
+        </a>
+      </li>
+    
+      <li>
+        <a href="/about.html" >
+          关于
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+    </header>
+    <main>
+      <div class="post">
+
+  <h1>禁用大写锁定键</h1>
+
+  <div>
+    
+    <span class="tag-list">
+  
+    
+    <a href="/tags/%E8%A3%85%E6%9C%BA.html" class="tag">装机</a>&nbsp;
+  
+</span>
+
+    <span class="date">2020年07月29日</span>
+  </div>
+
+  <h2 id="windows-10-系统">
+        
+        
+          Windows 10 系统 <a href="#windows-10-系统" class="anchor">#</a>
+        
+        
+      </h2>
+
+<p>按照以下步骤即可:</p>
+
+<ol>
+  <li>进入注册表编辑器(regedit);</li>
+  <li>找到注册表键<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout</code>;</li>
+  <li>新建或更改二进制值Scancode Map为<code>00,00,00,00,00,00,00,00,02,00,00,00,00,00,3a,00,00,00,00,00</code>.</li>
+  <li>重启电脑.</li>
+</ol>
+    
+      <h2 id="参考资料">
+        
+        
+          参考资料 <a href="#参考资料" class="anchor">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li><a href="https://winaero.com/blog/disable-caps-lock-key-windows-10/">Disable Caps Lock Key In Windows 10</a>.</li>
+</ol>
+
+
+</div>
+
+    </main>
+  </body>
+</html>
