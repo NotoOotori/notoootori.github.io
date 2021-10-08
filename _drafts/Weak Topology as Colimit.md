@@ -4,7 +4,7 @@ tags: Topology Category-Theory
 description: In this article, we will explain the understanding of weak topology as a certain colimit.
 ---
 
-**Definition.** Let $X$ be a set and let a collection $\{X_{\lambda}\}_{\lambda\in \Lambda}$ of topological spaces be a cover of $X$. Define a topology on $X$ by declaring a subset $F\subseteq X$ to be closed if and only if $F \cap X_\lambda$ is closed in $X_\lambda$ for each $\lambda$, which is called the weak topology on X.
+**Definition.** Let $X$ be a set and let a collection $\{X_{\lambda}\}_{\lambda\in \Lambda}$ of topological spaces be a cover of $X$. Define a topology on $X$ by declaring a subset $F\subseteq X$ to be closed if and only if $F \cap X_\lambda$ is closed in $X_\lambda$ for each $\lambda$. Name the topology by the weak topology on X.
 
 
 
