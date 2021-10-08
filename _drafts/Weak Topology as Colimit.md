@@ -26,7 +26,7 @@ Weak topology on $X$ can also be constructed by "gluing" the spaces $\{X_\lambda
 
 
 
-**Proposition.** $X$ is isomorphic to the colimit of the full diagram compromised by the spaces $X_\lambda$ and the inclusions of their pairwise intersections $X_\lambda\cap X_{\lambda'}$.
+**Proposition.** $X$ is the colimit of the full diagram compromised by the spaces $X_\lambda$ and the inclusions of their pairwise intersections $X_\lambda\cap X_{\lambda'}$.
 
 *Proof.* The information of a cone under the diagram with nadir $Y$ consists of a collection $\{\phi_\lambda\colon X_\lambda \to Y\}$ of continuous maps satisfying that $\phi_\lambda$ and $\phi_{\lambda'}$ coincide on $X_\lambda\cap X_{\lambda'}$ for every $\lambda, \lambda'\in \Lambda$. Then we can glue these maps to obtain a unique map $\phi\colon X\to Y$. We shall prove that $\phi$ is continuous.
 
