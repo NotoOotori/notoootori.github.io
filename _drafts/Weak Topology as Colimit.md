@@ -6,7 +6,7 @@ description: In this article, we will explain the understanding of weak topology
 
 **Definition.** Let $X$ be a set and let a collection $\{X_{\lambda}\}_{\lambda\in \Lambda}$ of topological spaces be a cover of $X$. Define a topology on $X$ by declaring a subset $F\subseteq X$ to be closed if and only if $F \cap X_\lambda$ is closed in $X_\lambda$ for each $\lambda$. Name the topology by the weak topology on X.
 
-&NewLine;
+<br>
 
 We claim that by substituting every occurrence of the word "closed" by "open" in the previous definition, we still obtain the same topology.
 
@@ -18,7 +18,7 @@ Suppose $E\subseteq X$ is open in $X$. Then $X\backslash E$ is closed in $X$. Th
 
 Conversely, let $E\cap X_\lambda$ be open in $X_\lambda$ for each $\lambda$. Then $(X\backslash E) \cap X_\lambda = X_\lambda \backslash (E\cap X_\lambda)$ is closed in $X_\lambda$ for every $\lambda$. Again by definition of weak topology we obtain that $X\backslash E$ is closed in $X$. Thus $E$ is open in $X$.
 
-&NewLine;
+<br>
 
 Weak topology on $X$ can also be constructed by "gluing" the spaces $\{X_\lambda\}$. More precisely, we have the following proposition.
 
@@ -28,7 +28,7 @@ Weak topology on $X$ can also be constructed by "gluing" the spaces $\{X_\lambda
 
 Let $V\subseteq Y$ be an open set of $Y$. Then $\phi^{-1}(V)\cap X_\lambda=\phi_\lambda^{-1}(V)$ is open in $X_\lambda$ for every $\lambda$. It implies that $\phi^{-1}(V)$ is open in $X$, which ends the proof.
 
-&NewLine;
+<br>
 
 Now a natural question arises that whether the weak topology defined by a cover of a topological space is the same as the original one.
 
